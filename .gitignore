@@ -1,0 +1,5 @@
+.gitignore
+.idea/
+CS151_Project.iml
+Saved.dat
+out/

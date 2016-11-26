@@ -127,14 +127,14 @@ public class HotelReservationFrame extends JFrame {
 		
 		final int textAreaHeight = 40;
 		
-		JTextField firstNameTextField = new JTextField("First Name");
+		final JTextField firstNameTextField = new JTextField("First Name");
 		firstNameTextField.setMaximumSize(new Dimension(frameCenterPanel.getWidth(), textAreaHeight));
 		firstNameTextField.addMouseListener(new MouseAdapter() {
 			public void mousePressed(MouseEvent e) {
 				firstNameTextField.setText("");
 			}
 		});
-		JTextField lastNameTextField = new JTextField("Last Name");
+		final JTextField lastNameTextField = new JTextField("Last Name");
 		lastNameTextField.setMaximumSize(new Dimension(frameCenterPanel.getWidth(), textAreaHeight));
 		lastNameTextField.addMouseListener(new MouseAdapter() {
 			public void mousePressed(MouseEvent e) {
@@ -171,7 +171,7 @@ public class HotelReservationFrame extends JFrame {
 		
 		final int textAreaHeight = 40;
 		
-		JTextField userIdTextField = new JTextField("Account Id");
+		final JTextField userIdTextField = new JTextField("Account Id");
 		userIdTextField.setMaximumSize(new Dimension(frameCenterPanel.getWidth(), textAreaHeight));
 		userIdTextField.addMouseListener(new MouseAdapter() {
 			public void mousePressed(MouseEvent e) {
