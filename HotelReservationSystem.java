@@ -39,7 +39,7 @@ public class HotelReservationSystem {
 		
 		GuestAccount.setGuestAccountCount(manager.getGuestAccountSize());
 		
-		final HotelReservationFrame frame = new HotelReservationFrame(manager);
+		HotelReservationFrame frame = new HotelReservationFrame(manager);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.addWindowListener(new WindowAdapter() {
 			public void windowClosing(WindowEvent e) {
