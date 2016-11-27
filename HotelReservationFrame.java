@@ -148,7 +148,7 @@ public class HotelReservationFrame extends JFrame {
 				String lastName = lastNameTextField.getText();
 				hotelManager.addGuestAccount(firstName, lastName);
 				JOptionPane.showMessageDialog(null, firstName + " " + lastName + ", you have successfully signed up!\n"+""
-												+ "Your ID number is: " + (GuestAccount.getCount()-1));
+												+ "Your ID number is: " + (GuestAccount.getCount()));
 				showMainGuestView();
 			}
 		});
