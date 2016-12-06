@@ -11,7 +11,11 @@ public class EconomicRoom extends HotelRoom {
 	 * Creates an Economic Room
 	 */
 	public EconomicRoom() {
-		super(PRICE);
+		
+	}
+
+	public static int getPrice() {
+		return PRICE;
 	}
 	
 }

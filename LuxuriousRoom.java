@@ -11,7 +11,11 @@ public class LuxuriousRoom extends HotelRoom {
 	 * Creates a LuxuriosRoom.
 	 */
 	public LuxuriousRoom() {
-		super(PRICE);
+		
+	}
+
+	public static int getPrice() {
+		return PRICE;
 	}
 	
 }
