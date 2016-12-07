@@ -81,7 +81,7 @@ public class CalendarGridComponent extends JComponent {
 			if (currentDay == i && currentMonth == month) {
 				dayButton.setBorder(new LineBorder(Color.BLACK));
 			}
-			int dayOffset = i - currentDay;
+			final int dayOffset = i - currentDay;
 			dayButton.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					temp.add(GregorianCalendar.DAY_OF_MONTH, dayOffset);

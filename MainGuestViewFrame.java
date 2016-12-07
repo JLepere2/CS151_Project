@@ -20,7 +20,7 @@ public class MainGuestViewFrame extends HotelReservationFrame {
 	private JPanel frameCenterPanel;
 	private JPanel frameCenterPanelNorth;
 	
-	public MainGuestViewFrame(HotelReservationFrameManager frameManager, HotelManager hotelManager) {
+	public MainGuestViewFrame(final HotelReservationFrameManager frameManager, final HotelManager hotelManager) {
 		super(hotelManager);
 
 		this.frameCenterPanel = new JPanel();
@@ -72,7 +72,7 @@ public class MainGuestViewFrame extends HotelReservationFrame {
 
 		JLabel checkInLabel = new JLabel(" Check in");
 		JLabel checkOutLabel = new JLabel("  Check out");
-		JTextField dateFrom = new JTextField(CalendarGridFrame.getDateString(new Date()));
+		final JTextField dateFrom = new JTextField(CalendarGridFrame.getDateString(new Date()));
 		dateFrom.setEditable(false);
 		dateFrom.addMouseListener(new MouseAdapter() {
 			public void mousePressed(MouseEvent e) {
@@ -80,7 +80,7 @@ public class MainGuestViewFrame extends HotelReservationFrame {
 				gridFrame.setVisible(true);
 			}
 		});
-		JTextField dateTo = new JTextField(CalendarGridFrame.getDateString(new Date()));
+		final JTextField dateTo = new JTextField(CalendarGridFrame.getDateString(new Date()));
 		dateTo.setEditable(false);
 		dateTo.addMouseListener(new MouseAdapter() {
 			public void mousePressed(MouseEvent e) {

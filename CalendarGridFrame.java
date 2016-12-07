@@ -38,9 +38,9 @@ public class CalendarGridFrame extends JFrame {
 		this.setSize(FRAME_SIZE, FRAME_SIZE);
 		this.setLocationRelativeTo(null);
 		
-		CalendarGridComponent gridComp = new CalendarGridComponent(this);
+		final CalendarGridComponent gridComp = new CalendarGridComponent(this);
 		
-		JLabel currentMonthLabel = new JLabel(gridComp.getCurrentMonth());
+		final JLabel currentMonthLabel = new JLabel(gridComp.getCurrentMonth());
 		currentMonthLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		changeListeners.add(new ChangeListener() {
 			public void stateChanged(ChangeEvent e) {

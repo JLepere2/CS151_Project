@@ -15,7 +15,7 @@ public class HotelReservationFrame extends JFrame {
 	private static String TITLE = "HOTEL RESERVATION SYSTEM";
 	private HotelManager manager;
 	
-	public HotelReservationFrame(HotelManager manager) {
+	public HotelReservationFrame(final HotelManager manager) {
 		this.manager = manager;
 		this.setSize(FRAME_WIDTH, FRAME_HEIGHT);
 		this.setTitle(TITLE);

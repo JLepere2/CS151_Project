@@ -17,7 +17,7 @@ public class GuestLogInFrame extends HotelReservationFrame {
 	private static final long serialVersionUID = 1L;
 	private JPanel frameCenterPanel;
 	
-	public GuestLogInFrame(HotelReservationFrameManager frameManager, HotelManager hotelManager) {
+	public GuestLogInFrame(final HotelReservationFrameManager frameManager, final HotelManager hotelManager) {
 		super(hotelManager);
 
 		this.frameCenterPanel = new JPanel();
@@ -50,7 +50,7 @@ public class GuestLogInFrame extends HotelReservationFrame {
 		
 	}
 
-	private void showSignUpView(HotelReservationFrameManager frameManager) {
+	private void showSignUpView(final HotelReservationFrameManager frameManager) {
 		
 		frameCenterPanel.removeAll();
 		frameCenterPanel.setLayout(new BoxLayout(frameCenterPanel, BoxLayout.Y_AXIS));
@@ -95,7 +95,7 @@ public class GuestLogInFrame extends HotelReservationFrame {
 	/**
 	 * The sign in view.
 	 */
-	public void showSignInView(HotelReservationFrameManager frameManager) {
+	public void showSignInView(final HotelReservationFrameManager frameManager) {
 
 		frameCenterPanel.removeAll();
 		frameCenterPanel.setLayout(new BoxLayout(frameCenterPanel, BoxLayout.Y_AXIS));

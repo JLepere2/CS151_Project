@@ -10,7 +10,7 @@ public class UserSelectionFrame extends HotelReservationFrame {
 
 	private static final long serialVersionUID = 11636123L;
 
-	public UserSelectionFrame(HotelReservationFrameManager frameManager, HotelManager hotelManager) {
+	public UserSelectionFrame(final HotelReservationFrameManager frameManager, final HotelManager hotelManager) {
 		super(hotelManager);
 		
 		JPanel headerPanel = new JPanel(new FlowLayout());
