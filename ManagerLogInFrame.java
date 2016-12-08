@@ -20,9 +20,9 @@ public class ManagerLogInFrame extends HotelReservationFrame {
     super(manager);
 
     JPanel headerPanel = new JPanel(new FlowLayout());
-    frameCenterPanel = new JPanel(new GridLayout(1,2));
+    frameCenterPanel = new JPanel(new GridLayout(2,2,20,20));
     frameCenterPanel.setBorder(new EmptyBorder(20, 20, 90 ,20));
-    
+
     JButton loadButton = new JButton("Load Reservations");
     loadButton.addActionListener(new ActionListener() {
       public void actionPerformed(ActionEvent e) {
@@ -34,6 +34,7 @@ public class ManagerLogInFrame extends HotelReservationFrame {
     viewButton.addActionListener(new ActionListener() {
       public void actionPerformed(ActionEvent e) {
         managerMonthView(frameManager);
+        managerRoomView();
       }
     });
 
@@ -57,6 +58,18 @@ public class ManagerLogInFrame extends HotelReservationFrame {
     JTextArea roomAvailabilityArea = new JTextArea("Room Information: ");
     frameCenterPanel.add(gridComp);
     frameCenterPanel.add(roomAvailabilityArea);
+
+    frameCenterPanel.validate();
+    frameCenterPanel.repaint();
+  }
+
+  public void managerRoomView() {
+    JTextArea roomView = new JTextArea("Room View: ");
+    JTextArea roomInformation = new JTextArea("Room Information: ");
+
+    frameCenterPanel.add(roomView);
+    frameCenterPanel.add(roomInformation);
+
     frameCenterPanel.validate();
     frameCenterPanel.repaint();
   }
