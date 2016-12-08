@@ -6,10 +6,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
-import javax.swing.JButton;
-import javax.swing.JComponent;
-import javax.swing.JLabel;
-import javax.swing.SwingConstants;
+import javax.swing.*;
 import javax.swing.border.LineBorder;
 
 /**
@@ -24,6 +21,7 @@ public class CalendarGridComponent extends JComponent {
 	private String[] longMonths = {"January", "February", "March", "April", "May",
 			"June", "July", "August", "September", "October", "November", "December"};
 	private CalendarGridFrame parentFrame;
+  private HotelReservationFrameManager frameManager;
 	private GregorianCalendar temp;
 	private int currentDay;
 	private int currentMonth;
@@ -35,6 +33,13 @@ public class CalendarGridComponent extends JComponent {
 	public CalendarGridComponent(CalendarGridFrame theParentFrame) {
 		this.parentFrame = theParentFrame;
 		this.temp = new GregorianCalendar();
+		this.currentDay = temp.get(Calendar.DAY_OF_MONTH);
+		this.currentMonth = temp.get(Calendar.MONTH);
+	}
+
+	public CalendarGridComponent(HotelReservationFrameManager frameManager) {
+    this.frameManager = frameManager;
+    this.temp = new GregorianCalendar();
 		this.currentDay = temp.get(Calendar.DAY_OF_MONTH);
 		this.currentMonth = temp.get(Calendar.MONTH);
 	}

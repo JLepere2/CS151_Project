@@ -1,7 +1,10 @@
 import javax.swing.*;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.util.Date;
 
 /**
@@ -25,9 +28,9 @@ public class ManagerLogInFrame extends HotelReservationFrame {
     });
 
     JButton viewButton = new JButton("View Reservations");
-    loadButton.addActionListener(new ActionListener() {
+    viewButton.addActionListener(new ActionListener() {
       public void actionPerformed(ActionEvent e) {
-        ManagerMonthView();
+        managerMonthView(frameManager);
       }
     });
 
@@ -46,15 +49,8 @@ public class ManagerLogInFrame extends HotelReservationFrame {
   }
 
 
-  public void ManagerMonthView() {
-    frameCenterPanel.removeAll();
-    final JTextField dateNow = new JTextField(CalendarGridFrame.getDateString(new Date()));
-    CalendarGridFrame frame = new CalendarGridFrame(dateNow);
-    CalendarGridComponent gridFrame = new CalendarGridComponent(frame);
-    gridFrame.setVisible(true);
-
-    frameCenterPanel.add(gridFrame);
-    this.add(frameCenterPanel, BorderLayout.CENTER);
-
+  public void managerMonthView(HotelReservationFrameManager frameManager) {
+    final CalendarGridComponent gridComp = new CalendarGridComponent(frameManager);
+    frameCenterPanel.add(gridComp, BorderLayout.NORTH);
   }
 }
