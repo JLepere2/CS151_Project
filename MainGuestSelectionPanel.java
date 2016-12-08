@@ -17,34 +17,36 @@ public class MainGuestSelectionPanel extends JPanel {
 
 	private static final long serialVersionUID = 11531L;
 
-	public MainGuestSelectionPanel(final DateRangeReservationModel dateRangeModel, final MainGuestAvailabilityPanel availabilityPanel) {
+	public MainGuestSelectionPanel(DateRangeReservationModel dateRangeModel, MainGuestAvailabilityPanel availabilityPanel) {
 
 		//-----INPUT DATE PANEL----///
 		JPanel textFieldPanel = new JPanel(new GridLayout(4, 2));
 		JLabel checkInLabel = new JLabel(" Check in");
 		JLabel checkOutLabel = new JLabel(" Check out");
-		final JTextField dateFrom = new JTextField(MyDate.getDateString(MyDate.getDate(new Date())));
+		JTextField dateFrom = new JTextField(MyDate.getDateString(MyDate.getDate(new Date())));
+		JTextField dateTo = new JTextField(MyDate.getDateString(MyDate.getDate(new Date())));
 		dateFrom.setEditable(false);
 		dateFrom.addMouseListener(new MouseAdapter() {
 			public void mousePressed(MouseEvent e) {
-				CalendarGridFrame gridFrame = new CalendarGridFrame(dateFrom);
+				CalendarGridFrame gridFrame = new CalendarGridFrame(dateFrom, dateTo, true);
 				gridFrame.setVisible(true);
 				gridFrame.addWindowListener(new WindowAdapter() {
 					public void windowClosing(WindowEvent e) {
 						dateRangeModel.setDate(true, dateFrom.getText());
+						dateRangeModel.setDate(false, dateTo.getText());
 					}
 				});
 			}
 		});
-		final JTextField dateTo = new JTextField(MyDate.getDateString(MyDate.getDate(new Date())));
 		dateTo.setEditable(false);
 		dateTo.addMouseListener(new MouseAdapter() {
 			public void mousePressed(MouseEvent e) {
-				CalendarGridFrame gridFrame = new CalendarGridFrame(dateTo);
+				CalendarGridFrame gridFrame = new CalendarGridFrame(dateTo, dateFrom, false);
 				gridFrame.setVisible(true);
 				gridFrame.addWindowListener(new WindowAdapter() {
 					public void windowClosing(WindowEvent e) {
 						dateRangeModel.setDate(false, dateTo.getText());
+						dateRangeModel.setDate(true, dateFrom.getText());
 					}
 				});
 			}

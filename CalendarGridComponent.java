@@ -37,7 +37,7 @@ public class CalendarGridComponent extends JComponent {
 		this.currentDay = temp.get(Calendar.DAY_OF_MONTH);
 	}
 	
-  public void paintComponent(Graphics g) {
+	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
 		for (Component c : this.getComponents()) {
 			this.remove(c);
@@ -78,7 +78,7 @@ public class CalendarGridComponent extends JComponent {
 			if (currentDay == i) {
 				dayButton.setBorder(new LineBorder(Color.BLACK));
 			}
-			final int d = i;
+			int d = i;
 			dayButton.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					currentDay = d;

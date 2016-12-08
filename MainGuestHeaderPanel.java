@@ -9,12 +9,15 @@ public class MainGuestHeaderPanel extends JPanel {
 
 	private static final long serialVersionUID = 1531L;
 
-	public MainGuestHeaderPanel(final MainCardPanel mainCardPanel, HotelManager hotelManager, final MainGuestSelectionPanel selectionPanel) {
+	public MainGuestHeaderPanel(MainCardPanel mainCardPanel, HotelManager hotelManager, MainGuestSelectionPanel selectionPanel, MainGuestAvailabilityPanel availabilityPanel) {
 		
 		JButton backButton = new JButton("Sign Out");
 		backButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				((CardLayout) mainCardPanel.getLayout()).show(mainCardPanel, GuestLogInPanel.getStateIdentifier());
+				selectionPanel.setVisible(false);
+				availabilityPanel.setVisible(false);
+				availabilityPanel.removeAllFromQueue();
 			}
 		});
 		JButton makeReservationButton = new JButton("Make a Reservation");

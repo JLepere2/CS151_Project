@@ -21,12 +21,12 @@ public class GuestLogInPanel extends JPanel {
 	private static String lastNameText = "Last Name";
 	private static String accountIdText = "Account Id";
 	
-	public GuestLogInPanel(final MainCardPanel mainCardPanel, final HotelManager hotelManager) {
+	public GuestLogInPanel(MainCardPanel mainCardPanel, HotelManager hotelManager) {
 		
 		this.setLayout(new BorderLayout());
 		
 		//-------FRAME CENTER PANEL------//
-		final JPanel frameCenterPanel = new JPanel(new CardLayout());
+		JPanel frameCenterPanel = new JPanel(new CardLayout());
 		frameCenterPanel.setVisible(false);
 
 		//-----SIGN UP CARD PANEL-----//
