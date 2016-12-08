@@ -6,7 +6,10 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
-import javax.swing.*;
+import javax.swing.JButton;
+import javax.swing.JComponent;
+import javax.swing.JLabel;
+import javax.swing.SwingConstants;
 import javax.swing.border.LineBorder;
 
 /**
@@ -14,17 +17,15 @@ import javax.swing.border.LineBorder;
  * @author JLepere2
  * Version 1.1
  */
-public class CalendarGridComponent extends JPanel {
+public class CalendarGridComponent extends JComponent {
 	
 	private static final long serialVersionUID = 12632L;
 	private String[] shortDays = {"Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"};
 	private String[] longMonths = {"January", "February", "March", "April", "May",
 			"June", "July", "August", "September", "October", "November", "December"};
 	private CalendarGridFrame parentFrame;
-  private HotelReservationFrameManager frameManager;
 	private GregorianCalendar temp;
 	private int currentDay;
-	private int currentMonth;
 	
 	/**
 	 * Creates a calendar grid.
@@ -34,14 +35,6 @@ public class CalendarGridComponent extends JPanel {
 		this.parentFrame = theParentFrame;
 		this.temp = new GregorianCalendar();
 		this.currentDay = temp.get(Calendar.DAY_OF_MONTH);
-		this.currentMonth = temp.get(Calendar.MONTH);
-	}
-
-	public CalendarGridComponent(HotelReservationFrameManager frameManager) {
-    this.frameManager = frameManager;
-    this.temp = new GregorianCalendar();
-		this.currentDay = temp.get(Calendar.DAY_OF_MONTH);
-		this.currentMonth = temp.get(Calendar.MONTH);
 	}
 	
 	public void paintComponent(Graphics g) {
@@ -74,7 +67,6 @@ public class CalendarGridComponent extends JPanel {
 		int columnWidth = frameWidth / 7;
 		int currentDayOfWeek = firstDayOfWeek-1;
 		int currentRow = 0;
-		int month = temp.get(Calendar.MONTH);
 		
 		for (int i = 1; i <= maxDaysInMonth; i ++) {
 			
@@ -83,14 +75,15 @@ public class CalendarGridComponent extends JPanel {
 			dayButton.setLocation(currentDayOfWeek*columnWidth, headerHeight + currentRow*rowHeight);
 			dayButton.setOpaque(true);
 			dayButton.setFocusPainted(false);
-			if (currentDay == i && currentMonth == month) {
+			if (currentDay == i) {
 				dayButton.setBorder(new LineBorder(Color.BLACK));
 			}
-			final int dayOffset = i - currentDay;
+			int d = i;
 			dayButton.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					temp.add(GregorianCalendar.DAY_OF_MONTH, dayOffset);
-					parentFrame.datePressed(temp.getTime());
+					currentDay = d;
+					repaint();
+					parentFrame.notifyChange();
 				}
 			});
 			this.add(dayButton);
@@ -114,6 +107,7 @@ public class CalendarGridComponent extends JPanel {
 		} else {
 			temp.add(GregorianCalendar.MONTH, -1);
 		}
+		currentDay = 1;
 		this.repaint();
 		parentFrame.notifyChange();
 	}
@@ -122,8 +116,12 @@ public class CalendarGridComponent extends JPanel {
 	 * Gets the current month of the grid.
 	 * @return the current month of the grid
 	 */
-	public String getCurrentMonth() {
-		return longMonths[temp.get(GregorianCalendar.MONTH)];
+	public String getCurrentDayLong() {
+		return longMonths[temp.get(GregorianCalendar.MONTH)] + " " + currentDay + " " + temp.get(Calendar.YEAR);
+	}
+	
+	public String getCurrentDayShort() {
+		return MyDate.getDateString(new MyDate(temp.get(Calendar.YEAR),temp.get(GregorianCalendar.MONTH)+1,currentDay));
 	}
 	
 }

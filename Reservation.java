@@ -1,5 +1,4 @@
 import java.io.Serializable;
-import java.util.Date;
 
 /**
  * A reservation for the hotel.
@@ -12,8 +11,7 @@ public class Reservation implements Serializable {
 
 	private GuestAccount guest;
 	private HotelRoom room;
-	private Date checkInDate;
-	private Date checkOutDate;
+	private MyDate checkInDate, checkOutDate;
 	
 	/**
 	 * Creates a new Reservation.
@@ -22,7 +20,7 @@ public class Reservation implements Serializable {
 	 * @param theCheckInDate the check in date
 	 * @param theCheckOutDate the check out date
 	 */
-	public Reservation(GuestAccount theGuest, HotelRoom theRoom, Date theCheckInDate, Date theCheckOutDate) {
+	public Reservation(GuestAccount theGuest, HotelRoom theRoom, MyDate theCheckInDate, MyDate theCheckOutDate) {
 		this.guest = theGuest;
 		this.room = theRoom;
 		this.checkInDate = theCheckInDate;
@@ -33,7 +31,7 @@ public class Reservation implements Serializable {
 	 * Gets the check in date for the reservation.
 	 * @return the check in date
 	 */
-	public Date getCheckInDate() {
+	public MyDate getCheckInDate() {
 		return checkInDate;
 	}
 	
@@ -41,7 +39,7 @@ public class Reservation implements Serializable {
 	 * Gets the check out date for the reservation.
 	 * @return the check out date
 	 */
-	public Date getCheckOutDate() {
+	public MyDate getCheckOutDate() {
 		return checkOutDate;
 	}
 	
@@ -51,6 +49,10 @@ public class Reservation implements Serializable {
 	 */
 	public HotelRoom getHotelRoom() {
 		return room;
+	}
+	
+	public String getTime() {
+		return MyDate.getDateString(checkInDate) + " - " + MyDate.getDateString(checkOutDate);
 	}
 	
 }

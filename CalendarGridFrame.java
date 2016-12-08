@@ -2,10 +2,8 @@ import java.awt.BorderLayout;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowEvent;
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.GregorianCalendar;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -26,30 +24,39 @@ public class CalendarGridFrame extends JFrame {
 	private static final long serialVersionUID = 11531L;
 	private static int FRAME_SIZE = 300;
 	private static String FRAME_TITLE = "Select Date";
-	private JTextField textField;
 	private ArrayList<ChangeListener> changeListeners;
 	
 	public CalendarGridFrame(JTextField theTextField) {
 		
-		this.textField = theTextField;
 		this.changeListeners = new ArrayList<>();
 		
 		this.setTitle(FRAME_TITLE);
 		this.setSize(FRAME_SIZE, FRAME_SIZE);
 		this.setLocationRelativeTo(null);
 		
-		final CalendarGridComponent gridComp = new CalendarGridComponent(this);
+		CalendarGridComponent gridComp = new CalendarGridComponent(this);
 		
-		final JLabel currentMonthLabel = new JLabel(gridComp.getCurrentMonth());
+		//-------SOUTH PANEL-------//
+		JPanel southPanel = new JPanel(new BorderLayout());
+		JLabel currentMonthLabel = new JLabel(gridComp.getCurrentDayLong());
 		currentMonthLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		changeListeners.add(new ChangeListener() {
 			public void stateChanged(ChangeEvent e) {
-				currentMonthLabel.setText(gridComp.getCurrentMonth());
+				currentMonthLabel.setText(gridComp.getCurrentDayLong());
 				currentMonthLabel.repaint();
 			}
 		});
+		JButton enterButton = new JButton("ENTER");
+		enterButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				datePressed(theTextField, gridComp.getCurrentDayShort());
+			}
+		});
+		southPanel.add(currentMonthLabel, BorderLayout.NORTH);
+		southPanel.add(enterButton, BorderLayout.SOUTH);
 		
-		JPanel topPanel = new JPanel(new FlowLayout());
+		//------NORTH PANEL------//
+		JPanel northPanel = new JPanel(new FlowLayout());
 		JButton previousMonthButton = new JButton("   <   ");
 		previousMonthButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -62,16 +69,15 @@ public class CalendarGridFrame extends JFrame {
 				gridComp.changeMonth(true);
 			}
 		});
-		topPanel.add(previousMonthButton);
-		topPanel.add(nextMonthButton);
+		northPanel.add(previousMonthButton);
+		northPanel.add(nextMonthButton);
 		
-		this.add(topPanel, BorderLayout.NORTH);
+		this.add(northPanel, BorderLayout.NORTH);
 		this.add(gridComp, BorderLayout.CENTER);
-		this.add(currentMonthLabel, BorderLayout.SOUTH);
+		this.add(southPanel, BorderLayout.SOUTH);
 		
 	}
-
-
+	
 	public void notifyChange() {
 		ChangeEvent e = new ChangeEvent(this);
 		for (ChangeListener l : changeListeners) {
@@ -79,44 +85,10 @@ public class CalendarGridFrame extends JFrame {
 		}
 	}
 	
-	public void datePressed(Date d) {
-		GregorianCalendar temp = new GregorianCalendar();
-		temp.setTime(d);
-		int year = temp.get(Calendar.YEAR);
-		int month = temp.get(Calendar.MONTH) + 1;
-		String theMonth = "";
-		if (month < 10) {
-			theMonth += "0";
-		}
-		theMonth += month;
-		int day = temp.get(Calendar.DAY_OF_MONTH);
-		String theDay = "";
-		if (day < 10) {
-			theDay += "0";
-		}
-		theDay += day;
-		textField.setText(theMonth + "/" + theDay + "/" + year);
-		textField.repaint();
-		this.dispose();
-	}
-	
-	public static String getDateString(Date d) {
-		GregorianCalendar temp = new GregorianCalendar();
-		temp.setTime(d);
-		int year = temp.get(Calendar.YEAR);
-		int month = temp.get(Calendar.MONTH) + 1;
-		String theMonth = "";
-		if (month < 10) {
-			theMonth += "0";
-		}
-		theMonth += month;
-		int day = temp.get(Calendar.DAY_OF_MONTH);
-		String theDay = "";
-		if (day < 10) {
-			theDay += "0";
-		}
-		theDay += day;
-		return theMonth + "/" + theDay + "/" + year;
+	private void datePressed(JTextField theTextField, String theDate) {
+		theTextField.setText(theDate);
+		theTextField.repaint();
+		this.dispatchEvent(new WindowEvent(this, WindowEvent.WINDOW_CLOSING));
 	}
 	
 }

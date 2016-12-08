@@ -31,8 +31,10 @@ public class HotelManager implements Serializable {
 	 * @param theFirstName the first name of the guest
 	 * @param theLastName the last name of the guest
 	 */
-	public void addGuestAccount(String theFirstName, String theLastName) {
-		guestAccounts.add(new GuestAccount(theFirstName, theLastName));
+	public GuestAccount addGuestAccount(String theFirstName, String theLastName) {
+		GuestAccount account = new GuestAccount(theFirstName, theLastName); 
+		guestAccounts.add(account);
+		return account;
 	}
 	
 	/**
@@ -40,14 +42,14 @@ public class HotelManager implements Serializable {
 	 * @param theIdNumber the id number
 	 * @return true if there is a user with the id number
 	 */
-	public boolean validIdForLogIn(int theIdNumber) {
+	public GuestAccount validIdForLogIn(int theIdNumber) {
 		
 		for (GuestAccount account : guestAccounts) {
 			if (account.getId() == theIdNumber) {
-				return true;
+				return account;
 			}
 		}
-		return false;
+		return null;
 		
 	}
 	
@@ -57,6 +59,14 @@ public class HotelManager implements Serializable {
 	 */
 	public int getGuestAccountSize() {
 		return guestAccounts.size();
+	}
+	
+	public ArrayList<HotelRoom> getAvailableRooms(ArrayList<Reservation> resQueue, MyDate theInDate, MyDate theOutDate) {
+		return reservationCollection.getAvailableRooms(resQueue, theInDate, theOutDate);
+	}
+	
+	public void addReservation(Reservation theReservation) {
+		reservationCollection.addReservation(theReservation);
 	}
 	
 }
