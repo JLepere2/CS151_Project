@@ -70,7 +70,8 @@ public class CalendarGridFrame extends JFrame {
 		this.add(currentMonthLabel, BorderLayout.SOUTH);
 		
 	}
-	
+
+
 	public void notifyChange() {
 		ChangeEvent e = new ChangeEvent(this);
 		for (ChangeListener l : changeListeners) {

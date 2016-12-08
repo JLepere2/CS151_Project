@@ -18,9 +18,10 @@ public class UserSelectionFrame extends HotelReservationFrame {
 		JButton managerButton = new JButton("Manager");
 		managerButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+				frameManager.showFrame(new ManagerLogInFrame(frameManager, hotelManager));
 			}
 		});
+
 		JButton guestButton = new JButton("GUEST");
 		guestButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
