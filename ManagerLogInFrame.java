@@ -1,4 +1,5 @@
 import javax.swing.*;
+import javax.swing.border.EmptyBorder;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 import java.awt.*;
@@ -12,14 +13,16 @@ import java.util.Date;
  */
 public class ManagerLogInFrame extends HotelReservationFrame {
 
+  private CalendarGridComponent gridComp;
   private JPanel frameCenterPanel;
 
   public ManagerLogInFrame(final HotelReservationFrameManager frameManager, final HotelManager manager) {
     super(manager);
 
     JPanel headerPanel = new JPanel(new FlowLayout());
-    frameCenterPanel = new JPanel();
-
+    frameCenterPanel = new JPanel(new GridLayout(1,2));
+    frameCenterPanel.setBorder(new EmptyBorder(20, 20, 90 ,20));
+    
     JButton loadButton = new JButton("Load Reservations");
     loadButton.addActionListener(new ActionListener() {
       public void actionPerformed(ActionEvent e) {
@@ -50,7 +53,11 @@ public class ManagerLogInFrame extends HotelReservationFrame {
 
 
   public void managerMonthView(HotelReservationFrameManager frameManager) {
-    final CalendarGridComponent gridComp = new CalendarGridComponent(frameManager);
-    frameCenterPanel.add(gridComp, BorderLayout.NORTH);
+    gridComp = new CalendarGridComponent(frameManager);
+    JTextArea roomAvailabilityArea = new JTextArea("Room Information: ");
+    frameCenterPanel.add(gridComp);
+    frameCenterPanel.add(roomAvailabilityArea);
+    frameCenterPanel.validate();
+    frameCenterPanel.repaint();
   }
 }

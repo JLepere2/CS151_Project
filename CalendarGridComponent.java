@@ -14,7 +14,7 @@ import javax.swing.border.LineBorder;
  * @author JLepere2
  * Version 1.1
  */
-public class CalendarGridComponent extends JComponent {
+public class CalendarGridComponent extends JPanel {
 	
 	private static final long serialVersionUID = 12632L;
 	private String[] shortDays = {"Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"};
