@@ -24,7 +24,6 @@ public class CalendarGridComponent extends JComponent {
 	private String[] longMonths = {"January", "February", "March", "April", "May",
 			"June", "July", "August", "September", "October", "November", "December"};
 	private CalendarGridFrame parentFrame;
-  private HotelReservationFrameManager frameManager;
 	private GregorianCalendar temp;
 	private int currentDay;
 	
@@ -37,13 +36,7 @@ public class CalendarGridComponent extends JComponent {
 		this.temp = new GregorianCalendar();
 		this.currentDay = temp.get(Calendar.DAY_OF_MONTH);
 	}
-
-  public CalendarGridComponent(HotelReservationFrameManager frameManager) {
-    this.frameManager = frameManager;
-    this.temp = new GregorianCalendar();
-    this.currentDay = temp.get(Calendar.DAY_OF_MONTH);
-  }
-
+	
   public void paintComponent(Graphics g) {
 		super.paintComponent(g);
 		for (Component c : this.getComponents()) {
