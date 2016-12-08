@@ -55,7 +55,6 @@ public class MainGuestViewFrame extends HotelReservationFrame {
 		
 	}
 
-
 	/**
 	 * Shows the make reservation view for guest.
 	 */

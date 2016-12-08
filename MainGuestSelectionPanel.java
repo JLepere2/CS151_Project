@@ -17,13 +17,13 @@ public class MainGuestSelectionPanel extends JPanel {
 
 	private static final long serialVersionUID = 11531L;
 
-	public MainGuestSelectionPanel(DateRangeReservationModel dateRangeModel, MainGuestAvailabilityPanel availabilityPanel) {
+	public MainGuestSelectionPanel(final DateRangeReservationModel dateRangeModel, final MainGuestAvailabilityPanel availabilityPanel) {
 
 		//-----INPUT DATE PANEL----///
 		JPanel textFieldPanel = new JPanel(new GridLayout(4, 2));
 		JLabel checkInLabel = new JLabel(" Check in");
 		JLabel checkOutLabel = new JLabel(" Check out");
-		JTextField dateFrom = new JTextField(MyDate.getDateString(MyDate.getDate(new Date())));
+		final JTextField dateFrom = new JTextField(MyDate.getDateString(MyDate.getDate(new Date())));
 		dateFrom.setEditable(false);
 		dateFrom.addMouseListener(new MouseAdapter() {
 			public void mousePressed(MouseEvent e) {
@@ -36,7 +36,7 @@ public class MainGuestSelectionPanel extends JPanel {
 				});
 			}
 		});
-		JTextField dateTo = new JTextField(MyDate.getDateString(MyDate.getDate(new Date())));
+		final JTextField dateTo = new JTextField(MyDate.getDateString(MyDate.getDate(new Date())));
 		dateTo.setEditable(false);
 		dateTo.addMouseListener(new MouseAdapter() {
 			public void mousePressed(MouseEvent e) {

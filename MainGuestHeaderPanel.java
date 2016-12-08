@@ -9,7 +9,7 @@ public class MainGuestHeaderPanel extends JPanel {
 
 	private static final long serialVersionUID = 1531L;
 
-	public MainGuestHeaderPanel(MainCardPanel mainCardPanel, HotelManager hotelManager, MainGuestSelectionPanel selectionPanel) {
+	public MainGuestHeaderPanel(final MainCardPanel mainCardPanel, HotelManager hotelManager, final MainGuestSelectionPanel selectionPanel) {
 		
 		JButton backButton = new JButton("Sign Out");
 		backButton.addActionListener(new ActionListener() {

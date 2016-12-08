@@ -21,7 +21,7 @@ public class MainGuestAvailabilityPanel extends JPanel {
 	private ArrayList<HotelRoom> availableRooms;
 	private static String queueHeader = "Reservation Queue:";
 
-	public MainGuestAvailabilityPanel(GuestAccount currentAccount, DateRangeReservationModel dateRangeModel, HotelManager hotelManager) {
+	public MainGuestAvailabilityPanel(final GuestAccount currentAccount, final DateRangeReservationModel dateRangeModel, final HotelManager hotelManager) {
 		
 		this.availableRooms = new ArrayList<>();
 		this.reservationQueue = new ArrayList<>();
@@ -29,15 +29,15 @@ public class MainGuestAvailabilityPanel extends JPanel {
 		this.setLayout(new BorderLayout());
 
 		//----Reservation Text Area Queue----//
-		JTextArea reservationQueueTextArea = new JTextArea(queueHeader);
+		final JTextArea reservationQueueTextArea = new JTextArea(queueHeader);
 		
 		//----AVAILABILITY TEXT FIELD
-		JTextArea availabilityTextArea = new JTextArea();
+		final JTextArea availabilityTextArea = new JTextArea();
 		
 		//-----ROOM NUMBER PANEL-----//
 		JPanel roomNumberPanel = new JPanel();
 		JLabel roomNumberLabel = new JLabel("Enter the room number to reserve.");
-		JTextField roomNumberTextField = new JTextField("   ");
+		final JTextField roomNumberTextField = new JTextField("   ");
 		roomNumberPanel.add(roomNumberLabel);
 		roomNumberPanel.add(roomNumberTextField);
 		
