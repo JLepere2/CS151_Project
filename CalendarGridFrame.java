@@ -26,7 +26,7 @@ public class CalendarGridFrame extends JFrame {
 	private static String FRAME_TITLE = "Select Date";
 	private ArrayList<ChangeListener> changeListeners;
 	
-	public CalendarGridFrame(JTextField theTextField, JTextField otherTextField, boolean settingFrom) {
+	public CalendarGridFrame(final JTextField theTextField, final JTextField otherTextField, final boolean settingFrom) {
 		
 		this.changeListeners = new ArrayList<>();
 		
@@ -34,11 +34,11 @@ public class CalendarGridFrame extends JFrame {
 		this.setSize(FRAME_SIZE, FRAME_SIZE);
 		this.setLocationRelativeTo(null);
 		
-		CalendarGridComponent gridComp = new CalendarGridComponent(this);
+		final CalendarGridComponent gridComp = new CalendarGridComponent(this);
 		
 		//-------SOUTH PANEL-------//
 		JPanel southPanel = new JPanel(new BorderLayout());
-		JLabel currentMonthLabel = new JLabel(gridComp.getCurrentDayLong());
+		final JLabel currentMonthLabel = new JLabel(gridComp.getCurrentDayLong());
 		currentMonthLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		changeListeners.add(new ChangeListener() {
 			public void stateChanged(ChangeEvent e) {

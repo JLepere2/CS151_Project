@@ -10,17 +10,11 @@ public class UserSelectionPanel extends JPanel {
 	private static final long serialVersionUID = 1256416L;
 	private static String identifier = "UserSelectionPanel";
 	
-<<<<<<< HEAD
 	public UserSelectionPanel(final MainCardPanel mainCardPanel) {
 		this.setLayout(new FlowLayout());
 		JPanel headerPanel = new JPanel(new GridLayout(1,2,100,50));
 		headerPanel.setBorder(new EmptyBorder(200, 0, 100, 0));
-=======
-	public UserSelectionPanel(MainCardPanel mainCardPanel) {
-		this.setLayout(new BorderLayout());
-		JPanel headerPanel = new JPanel(new FlowLayout());
->>>>>>> JLepere2-patch-1
-		
+
 		JButton managerButton = new JButton("MANAGER");
 		managerButton.setPreferredSize(new Dimension(200, 100));
 		managerButton.addActionListener(new ActionListener() {
