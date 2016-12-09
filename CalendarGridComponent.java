@@ -6,10 +6,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
-import javax.swing.JButton;
-import javax.swing.JComponent;
-import javax.swing.JLabel;
-import javax.swing.SwingConstants;
+import javax.swing.*;
 import javax.swing.border.LineBorder;
 
 /**
@@ -24,6 +21,7 @@ public class CalendarGridComponent extends JComponent {
 	private String[] longMonths = {"January", "February", "March", "April", "May",
 			"June", "July", "August", "September", "October", "November", "December"};
 	private CalendarGridFrame parentFrame;
+	private JPanel parentPanel;
 	private GregorianCalendar temp;
 	private int currentDay;
 	
@@ -36,7 +34,13 @@ public class CalendarGridComponent extends JComponent {
 		this.temp = new GregorianCalendar();
 		this.currentDay = temp.get(Calendar.DAY_OF_MONTH);
 	}
-	
+
+	public CalendarGridComponent(JPanel theParentFrame) {
+		this.parentPanel = theParentFrame;
+		this.temp = new GregorianCalendar();
+		this.currentDay = temp.get(Calendar.DAY_OF_MONTH);
+	}
+
   public void paintComponent(Graphics g) {
 		super.paintComponent(g);
 		for (Component c : this.getComponents()) {

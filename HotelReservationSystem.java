@@ -63,6 +63,7 @@ public class HotelReservationSystem {
 		cards.add(new UserSelectionPanel(cards), UserSelectionPanel.getStateIdentifier());
 		cards.add(new GuestLogInPanel(cards, manager), GuestLogInPanel.getStateIdentifier());
 		cards.add(new MainGuestViewPanel(cards, manager), MainGuestViewPanel.getStateIdentifier());
+		cards.add(new ManagerPanel(cards, manager), ManagerPanel.getStateIdentifier());
 		mainApplicationFrame.add(cards);
 		mainApplicationFrame.setVisible(true);
 	}
