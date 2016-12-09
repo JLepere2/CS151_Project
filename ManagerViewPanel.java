@@ -1,6 +1,8 @@
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 /**
@@ -15,8 +17,8 @@ public class ManagerViewPanel extends JPanel {
 
 
 
-  public ManagerViewPanel(MainCardPanel mainCardPanel, DateRangeReservationModel dateRangeModel, HotelManager hotelManager) {
-    CalendarGridComponent calendarGrid = new CalendarGridComponent(this);
+  public ManagerViewPanel(MainCardPanel mainCardPanel, final DateRangeReservationModel dateRangeModel, final HotelManager hotelManager) {
+    CalendarGridComponent calendarGrid = new CalendarGridComponent(this, dateRangeModel);
     ArrayList<Reservation> reservationQueue = new ArrayList<>();
     availableRoomsEconomic = dateRangeModel.getReservationAvailable(reservationQueue);
     dateRangeModel.setRoomSelected(false);
@@ -25,7 +27,7 @@ public class ManagerViewPanel extends JPanel {
     JTextArea roomAvailabilityArea = new JTextArea("Room Availability: " + "\n\n"
         + "Economic Rooms Left: " + availableRoomsEconomic.size() + "\n\n"
         + "Luxurious Rooms Left: " + availableRoomsLuxurious.size());
-    JTextArea roomInformation = new JTextArea("Information about the room: ");
+    final JTextArea roomInformation = new JTextArea("Information about the room: ");
 
     this.setLayout(new GridLayout(2,2,20,20));
     this.setBorder(new EmptyBorder(20,20,100,20));
@@ -50,12 +52,24 @@ public class ManagerViewPanel extends JPanel {
       JButton button = new JButton(i + "");
       button.setForeground(Color.red);
       for (HotelRoom room : availableRoomsLuxurious ) {
-        if (room.getRoomNumber() == i)
+        if (room.getRoomNumber() == i) {
           button.setForeground(Color.green);
+          button.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+              roomInformation.setText("");
+              roomInformation.setText("Room is available");
+            }
+          });
+        }
       }
+      button.addActionListener(new ActionListener() {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+          roomInformation.setText("Room is occupied");
+        }
+      });
       luxuriousRoomPanel.add(button);
     }
-
     roomInformation.repaint();
 
     roomView.add(economicRoomInfo);

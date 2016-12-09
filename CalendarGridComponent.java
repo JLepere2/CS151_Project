@@ -22,6 +22,7 @@ public class CalendarGridComponent extends JComponent {
 			"June", "July", "August", "September", "October", "November", "December"};
 	private CalendarGridFrame parentFrame;
 	private JPanel parentPanel;
+	private DateRangeReservationModel dateRangeModel;
 	private GregorianCalendar temp;
 	private int currentDay;
 	
@@ -35,7 +36,8 @@ public class CalendarGridComponent extends JComponent {
 		this.currentDay = temp.get(Calendar.DAY_OF_MONTH);
 	}
 
-	public CalendarGridComponent(JPanel theParentPanel) {
+	public CalendarGridComponent(JPanel theParentPanel, DateRangeReservationModel theDateRangeModel) {
+		this.dateRangeModel = theDateRangeModel;
 		this.parentPanel = theParentPanel;
 		this.temp = new GregorianCalendar();
 		this.currentDay = temp.get(Calendar.DAY_OF_MONTH);
@@ -87,7 +89,10 @@ public class CalendarGridComponent extends JComponent {
 				public void actionPerformed(ActionEvent e) {
 					currentDay = d;
 					repaint();
-					parentFrame.notifyChange();
+					if (parentFrame != null)
+						parentFrame.notifyChange();
+					if (parentPanel != null)
+						dateRangeModel.setDate(true, getCurrentDayShort());
 				}
 			});
 			this.add(dayButton);
