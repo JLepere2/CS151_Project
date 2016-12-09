@@ -31,7 +31,8 @@ public class ReservationCollection implements Serializable {
 	
 	/**
 	 * Gets a list of available rooms for the provided date.
-	 * @param theDate the date.
+	 * @param theInDate the date in.
+	 * @param theOutDate the date out
 	 * @return a list of available rooms.
 	 */
 	public ArrayList<HotelRoom> getAvailableRooms(ArrayList<Reservation> resQueue, MyDate theInDate, MyDate theOutDate) {

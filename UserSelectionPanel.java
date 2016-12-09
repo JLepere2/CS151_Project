@@ -12,7 +12,7 @@ public class UserSelectionPanel extends JPanel {
 	
 	public UserSelectionPanel(final MainCardPanel mainCardPanel) {
 		this.setLayout(new FlowLayout());
-		JPanel headerPanel = new JPanel(new GridLayout(1,2,100,50));
+		JPanel headerPanel = new JPanel(new GridLayout(1, 2, 100, 50));
 		headerPanel.setBorder(new EmptyBorder(200, 0, 100, 0));
 
 		JButton managerButton = new JButton("MANAGER");

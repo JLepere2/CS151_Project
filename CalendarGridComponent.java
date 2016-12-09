@@ -35,7 +35,13 @@ public class CalendarGridComponent extends JComponent {
 		this.currentDay = temp.get(Calendar.DAY_OF_MONTH);
 	}
 
-  public void paintComponent(Graphics g) {
+	public CalendarGridComponent(JPanel theParentPanel) {
+		this.parentPanel = theParentPanel;
+		this.temp = new GregorianCalendar();
+		this.currentDay = temp.get(Calendar.DAY_OF_MONTH);
+	}
+
+	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
 		for (Component c : this.getComponents()) {
 			this.remove(c);
