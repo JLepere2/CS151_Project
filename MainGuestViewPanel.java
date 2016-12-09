@@ -15,7 +15,7 @@ public class MainGuestViewPanel extends JPanel {
 		
 		//----CENTER PANEL ---//
 		JPanel centerPanel = new JPanel(new BorderLayout());
-		MainGuestAvailabilityPanel availabilityPanel = new MainGuestAvailabilityPanel(mainCardPanel.getCurrentAccount(), dateRangeModel, hotelManager);
+		MainGuestAvailabilityPanel availabilityPanel = new MainGuestAvailabilityPanel(mainCardPanel, dateRangeModel, hotelManager);
 		MainGuestSelectionPanel selectionPanel = new MainGuestSelectionPanel(dateRangeModel, availabilityPanel);
 		selectionPanel.setVisible(false);
 		availabilityPanel.setVisible(false);
@@ -23,7 +23,7 @@ public class MainGuestViewPanel extends JPanel {
 		centerPanel.add(availabilityPanel, BorderLayout.CENTER);
 		
 		//----HEADER----//
-		MainGuestHeaderPanel headerPanel = new MainGuestHeaderPanel(mainCardPanel, hotelManager, selectionPanel);
+		MainGuestHeaderPanel headerPanel = new MainGuestHeaderPanel(mainCardPanel, hotelManager, selectionPanel, availabilityPanel);
 		
 		this.add(headerPanel, BorderLayout.NORTH);
 		this.add(centerPanel, BorderLayout.CENTER);

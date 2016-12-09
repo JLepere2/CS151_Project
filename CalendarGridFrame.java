@@ -26,7 +26,7 @@ public class CalendarGridFrame extends JFrame {
 	private static String FRAME_TITLE = "Select Date";
 	private ArrayList<ChangeListener> changeListeners;
 	
-	public CalendarGridFrame(final JTextField theTextField) {
+	public CalendarGridFrame(JTextField theTextField, JTextField otherTextField, boolean settingFrom) {
 		
 		this.changeListeners = new ArrayList<>();
 		
@@ -34,11 +34,11 @@ public class CalendarGridFrame extends JFrame {
 		this.setSize(FRAME_SIZE, FRAME_SIZE);
 		this.setLocationRelativeTo(null);
 		
-		final CalendarGridComponent gridComp = new CalendarGridComponent(this);
+		CalendarGridComponent gridComp = new CalendarGridComponent(this);
 		
 		//-------SOUTH PANEL-------//
 		JPanel southPanel = new JPanel(new BorderLayout());
-		final JLabel currentMonthLabel = new JLabel(gridComp.getCurrentDayLong());
+		JLabel currentMonthLabel = new JLabel(gridComp.getCurrentDayLong());
 		currentMonthLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		changeListeners.add(new ChangeListener() {
 			public void stateChanged(ChangeEvent e) {
@@ -49,6 +49,15 @@ public class CalendarGridFrame extends JFrame {
 		JButton enterButton = new JButton("ENTER");
 		enterButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				if (settingFrom) {
+					if (shouldSetOther(gridComp.getCurrentDayShort(), otherTextField, settingFrom)) {
+						otherTextField.setText(gridComp.getCurrentDayShort());
+					}
+				} else {
+					if (shouldSetOther(gridComp.getCurrentDayShort(), otherTextField, settingFrom)) {
+						otherTextField.setText(gridComp.getCurrentDayShort());
+					}
+				}
 				datePressed(theTextField, gridComp.getCurrentDayShort());
 			}
 		});
@@ -89,6 +98,19 @@ public class CalendarGridFrame extends JFrame {
 		theTextField.setText(theDate);
 		theTextField.repaint();
 		this.dispatchEvent(new WindowEvent(this, WindowEvent.WINDOW_CLOSING));
+	}
+	
+	private boolean shouldSetOther(String theTextFieldText, JTextField otherTextField, boolean settingFrom) {
+		if (settingFrom) {
+			if (MyDate.getDate(theTextFieldText).compareTo(MyDate.getDate(otherTextField.getText())) > 0) {
+				return true;
+			}
+		} else {
+			if (MyDate.getDate(theTextFieldText).compareTo(MyDate.getDate(otherTextField.getText())) < 0) {
+				return true;
+			}
+		}
+		return false;
 	}
 	
 }

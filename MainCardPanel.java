@@ -11,10 +11,12 @@ public class MainCardPanel extends JPanel {
 	}
 	
 	public void setCurrentAccount(GuestAccount theGuestAccount) {
+		System.out.println("SET");
 		currentAccount = theGuestAccount;
 	}
 	
 	public GuestAccount getCurrentAccount() {
+		System.out.println("GET");
 		return currentAccount;
 	}
 	
