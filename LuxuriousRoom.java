@@ -12,7 +12,7 @@ public class LuxuriousRoom extends HotelRoom implements Serializable {
 	public static String identifier = "LUX";
 	
 	/**
-	 * Creates a LuxuriosRoom.
+	 * Creates a LuxuriousRoom.
 	 */
 	public LuxuriousRoom(int theRoomNumber) {
 		super.roomNumber = theRoomNumber;

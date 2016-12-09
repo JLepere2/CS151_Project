@@ -12,21 +12,26 @@ public class ManagerPanel extends JPanel {
 
   public ManagerPanel(final MainCardPanel mainCardPanel, final HotelManager hotelManager) {
 
+    final DateRangeReservationModel dateRangeModel = new DateRangeReservationModel(hotelManager);
+
     this.setLayout(new BorderLayout());
     JPanel headerPanel = new JPanel(new FlowLayout());
-    final ManagerViewPanel managerView = new ManagerViewPanel(mainCardPanel, hotelManager);
+    final ManagerViewPanel managerView = new ManagerViewPanel(mainCardPanel, dateRangeModel, hotelManager);
     managerView.setVisible(false);
 
     JButton loadViewButton = new JButton("Load/View Reservations");
     loadViewButton.addActionListener(new ActionListener() {
       public void actionPerformed(ActionEvent e) {
         managerView.setVisible(true);
+        managerView.revalidate();
       }
     });
 
     JButton backButton = new JButton("Back");
     backButton.addActionListener(new ActionListener() {
       public void actionPerformed(ActionEvent e) {
+        managerView.setVisible(false);
+        managerView.revalidate();
         ((CardLayout) mainCardPanel.getLayout()).show(mainCardPanel, UserSelectionPanel.getStateIdentifier());
       }
     });

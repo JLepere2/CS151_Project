@@ -91,5 +91,5 @@ public class DateRangeReservationModel {
 	public String getDateTo() {
 		return dateTo;
 	}
-	
+
 }
