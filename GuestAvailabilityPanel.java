@@ -15,6 +15,7 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
+import javax.swing.border.EmptyBorder;
 import javax.swing.border.StrokeBorder;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
@@ -51,11 +52,17 @@ public class GuestAvailabilityPanel extends JPanel {
 		
 		//----AVAILABILITY PANEL
 		JPanel availabilityPanel = new JPanel(new BorderLayout());
+    JPanel roomsAvailablePanelPretty = new JPanel(new GridLayout(2,1));
+    JPanel emptyPanel = new JPanel(new GridLayout(1,1));
+    emptyPanel.setBorder(new EmptyBorder(0,0,120,0));
 		final JPanel roomsAvailablePanel = new JPanel(new GridLayout(2, 5, 10, 10));
-		roomsAvailablePanel.setBorder(new StrokeBorder(new BasicStroke(1)));
+
+		roomsAvailablePanelPretty.setBorder(new StrokeBorder(new BasicStroke(1)));
 		final JLabel availableTextLabel = new JLabel(dateRangeModel.getDateRangeHeader());
-		availabilityPanel.add(availableTextLabel, BorderLayout.NORTH);
-		availabilityPanel.add(roomsAvailablePanel, BorderLayout.CENTER);
+		roomsAvailablePanelPretty.add(roomsAvailablePanel);
+    roomsAvailablePanelPretty.add(emptyPanel);
+    availabilityPanel.add(availableTextLabel, BorderLayout.NORTH);
+		availabilityPanel.add(roomsAvailablePanelPretty, BorderLayout.CENTER);
 		
 		//-----ROOM NUMBER PANEL-----//
 		JPanel roomNumberPanel = new JPanel();
@@ -158,7 +165,7 @@ public class GuestAvailabilityPanel extends JPanel {
 		JPanel roomAndButtonPanel = new JPanel(new GridLayout(2, 1));
 		roomAndButtonPanel.add(roomNumberPanel);
 		roomAndButtonPanel.add(buttonsPanel);
-		
+
 		//---- COMBO PANEL -----//
 		JPanel comboPanel = new JPanel(new BorderLayout());
 		comboPanel.add(roomAndButtonPanel, BorderLayout.NORTH);
@@ -179,7 +186,7 @@ public class GuestAvailabilityPanel extends JPanel {
 	/**
 	 * Sets the availability text are
 	 * @param dateRangeModel the date range model
-	 * @param availabilityTextArea the availability text are
+	 * @param availableTextLabel the availability text are
 	 */
 	private void setAvailabilityPanel(DateRangeReservationModel dateRangeModel, JLabel availableTextLabel, JPanel roomsAvailablePanel, final JTextField roomNumberTextField) {
 		
