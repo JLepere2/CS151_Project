@@ -15,6 +15,7 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
+import javax.swing.border.EmptyBorder;
 import javax.swing.border.StrokeBorder;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
@@ -50,12 +51,18 @@ public class GuestAvailabilityPanel extends JPanel {
 		final JTextArea reservationQueueTextArea = new JTextArea(queueHeader);
 		
 		//----AVAILABILITY PANEL
-		JPanel availabilityPanel = new JPanel(new BorderLayout());
-		final JPanel roomsAvailablePanel = new JPanel(new GridLayout(2, 5, 10, 10));
-		roomsAvailablePanel.setBorder(new StrokeBorder(new BasicStroke(1)));
-		final JLabel availableTextLabel = new JLabel(dateRangeModel.getDateRangeHeader());
-		availabilityPanel.add(availableTextLabel, BorderLayout.NORTH);
-		availabilityPanel.add(roomsAvailablePanel, BorderLayout.CENTER);
+    JPanel availabilityPanel = new JPanel(new BorderLayout());
+    JPanel roomsAvailablePanelPretty = new JPanel(new GridLayout(2,1));
+    JPanel emptyPanel = new JPanel(new GridLayout(1,1));
+    emptyPanel.setBorder(new EmptyBorder(0,0,120,0));
+    final JPanel roomsAvailablePanel = new JPanel(new GridLayout(2, 5, 10, 10));
+
+    roomsAvailablePanelPretty.setBorder(new StrokeBorder(new BasicStroke(1)));
+    final JLabel availableTextLabel = new JLabel(dateRangeModel.getDateRangeHeader());
+    roomsAvailablePanelPretty.add(roomsAvailablePanel);
+    roomsAvailablePanelPretty.add(emptyPanel);
+    availabilityPanel.add(availableTextLabel, BorderLayout.NORTH);
+    availabilityPanel.add(roomsAvailablePanelPretty, BorderLayout.CENTER);
 		
 		//-----ROOM NUMBER PANEL-----//
 		JPanel roomNumberPanel = new JPanel();

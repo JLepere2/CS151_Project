@@ -70,7 +70,7 @@ public class GuestViewReservationsPanel extends JPanel {
 							Collections.sort(reservations);
 							TableModel tableModel = new DefaultTableModel(columnTitles, reservations.size());
 							for (int i = 0; i < reservations.size(); i++) {
-								tableModel.setValueAt(i, i, 0);
+								tableModel.setValueAt(reservations.get(i).getTime(), i, 0);
 							}
 							reservationTable.setModel(tableModel);
 							reservationTable.repaint();
