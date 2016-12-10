@@ -40,7 +40,7 @@ public class CalendarGridFrame extends JFrame {
 		JLabel currentDayLabel = new JLabel();
 		
 		//----Grid Component
-		CalendarGridComponent gridComp = new CalendarGridComponent.Guest(currentDayLabel);
+		CalendarGridComponent.Guest gridComp = new CalendarGridComponent.Guest(currentDayLabel);
 		
 		//-------SOUTH PANEL-------//
 		JPanel southPanel = new JPanel(new BorderLayout());

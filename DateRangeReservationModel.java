@@ -68,7 +68,7 @@ public class DateRangeReservationModel {
 	 * @return a header for the current date range of the model.
 	 */
 	public String getDateRangeHeader() {
-		String header = dateFrom + " - " + dateTo + ":\n";
+		String header = dateFrom.getDateString() + " - " + dateTo.getDateString() + ":\n";
 		if (economicSelected) {
 			header = "Economic Rooms From " + header;
 		} else {

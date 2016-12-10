@@ -2,6 +2,7 @@ import java.io.Serializable;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
+import java.util.concurrent.TimeUnit;
 
 /**
  * A date for the hotel reservations
@@ -74,6 +75,17 @@ public class MyDate implements Comparable<MyDate>, Serializable {
 		}
 		theDay += day;
 		return theMonth + "/" + theDay + "/" + year;
+	}
+	
+	/**
+	 * Gets the total days from the other day.
+	 * @param otherDate the other.
+	 * @return the total days.
+	 */
+	public long totalDays(MyDate otherDate) {
+		GregorianCalendar t1 = new GregorianCalendar(year, month, day);
+		GregorianCalendar t2 = new GregorianCalendar(otherDate.year, otherDate.month, otherDate.day);
+		return TimeUnit.DAYS.convert(Math.abs(t1.getTime().getTime() - t2.getTime().getTime()), TimeUnit.MILLISECONDS);
 	}
 	
 }

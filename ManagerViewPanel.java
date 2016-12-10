@@ -22,7 +22,6 @@ import javax.swing.event.ChangeListener;
  */
 public class ManagerViewPanel extends JPanel {
 
-	private static String identifier = "ManagerViewPanel";
 	private static final long serialVersionUID = 1215316L;
 	private ArrayList<HotelRoom> availableRoomsEconomic;
 	private ArrayList<HotelRoom> availableRoomsLuxurious;
@@ -50,7 +49,7 @@ public class ManagerViewPanel extends JPanel {
 		roomAvailabilityArea.setEditable(false);
 		final String roomInformationHeader = "Information about the room: ";
 		final JTextArea roomInformation = new JTextArea(roomInformationHeader);
-		roomAvailabilityArea.setEditable(false);
+		roomInformation.setEditable(false);
 
 		// ------ Room View Panel
 		JPanel roomView = new JPanel(new GridLayout(4, 1));
@@ -66,7 +65,7 @@ public class ManagerViewPanel extends JPanel {
 
 		// ----- Grid Component
 		JLabel currentDayLabel = new JLabel();
-		CalendarGridComponent gridComp = new CalendarGridComponent.Manager(dateRangeModel, currentDayLabel);
+		CalendarGridComponent.Manager gridComp = new CalendarGridComponent.Manager(dateRangeModel, currentDayLabel);
 		dateRangeModel.addChangeListener(new ChangeListener() {
 			public void stateChanged(ChangeEvent e) {
 				setRoomsAvailable(dateRangeModel);
@@ -113,14 +112,6 @@ public class ManagerViewPanel extends JPanel {
 		this.add(roomAvailabilityArea);
 		this.add(roomView);
 		this.add(roomInformation);
-	}
-
-	/**
-	 * Gets the state identifier for this state 
-	 * @return the state id for this state
-	 */
-	public static String getStateIdentifier() {
-		return identifier;
 	}
 
 	/**
