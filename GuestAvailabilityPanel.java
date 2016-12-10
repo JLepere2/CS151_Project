@@ -47,20 +47,20 @@ public class GuestAvailabilityPanel extends JPanel {
 		final int maxDays = 60;
 
 		//----Reservation Text Area Queue----//
-		JTextArea reservationQueueTextArea = new JTextArea(queueHeader);
+		final JTextArea reservationQueueTextArea = new JTextArea(queueHeader);
 		
 		//----AVAILABILITY PANEL
 		JPanel availabilityPanel = new JPanel(new BorderLayout());
-		JPanel roomsAvailablePanel = new JPanel(new GridLayout(2, 5, 10, 10));
+		final JPanel roomsAvailablePanel = new JPanel(new GridLayout(2, 5, 10, 10));
 		roomsAvailablePanel.setBorder(new StrokeBorder(new BasicStroke(1)));
-		JLabel availableTextLabel = new JLabel(dateRangeModel.getDateRangeHeader());
+		final JLabel availableTextLabel = new JLabel(dateRangeModel.getDateRangeHeader());
 		availabilityPanel.add(availableTextLabel, BorderLayout.NORTH);
 		availabilityPanel.add(roomsAvailablePanel, BorderLayout.CENTER);
 		
 		//-----ROOM NUMBER PANEL-----//
 		JPanel roomNumberPanel = new JPanel();
 		JLabel roomNumberLabel = new JLabel("Enter the room number to reserve:");
-		JTextField roomNumberTextField = new JTextField("");
+		final JTextField roomNumberTextField = new JTextField("");
 		roomNumberTextField.setPreferredSize(new Dimension(30, 20));
 		roomNumberPanel.add(roomNumberLabel);
 		roomNumberPanel.add(roomNumberTextField);
@@ -181,7 +181,7 @@ public class GuestAvailabilityPanel extends JPanel {
 	 * @param dateRangeModel the date range model
 	 * @param availabilityTextArea the availability text are
 	 */
-	private void setAvailabilityPanel(DateRangeReservationModel dateRangeModel, JLabel availableTextLabel, JPanel roomsAvailablePanel, JTextField roomNumberTextField) {
+	private void setAvailabilityPanel(DateRangeReservationModel dateRangeModel, JLabel availableTextLabel, JPanel roomsAvailablePanel, final JTextField roomNumberTextField) {
 		
 		// Remove current components
 		for (Component c : roomsAvailablePanel.getComponents()) {
@@ -202,7 +202,7 @@ public class GuestAvailabilityPanel extends JPanel {
 			JButton roomButton = new JButton(i+"");
 			roomButton.setForeground(Color.RED);
 			if (available) {
-				String k = i + "";
+				final String k = i + "";
 				roomButton.setForeground(Color.GREEN);
 				roomButton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {

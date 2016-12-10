@@ -44,7 +44,7 @@ public class ManagerViewPanel extends JPanel {
 		setRoomsAvailable(dateRangeModel);
 
 		// ------ Room Available Text Area
-		JTextArea roomAvailabilityArea = new JTextArea("Room Availability: " + "\n\n" + "Economic Rooms Left: "
+		final JTextArea roomAvailabilityArea = new JTextArea("Room Availability: " + "\n\n" + "Economic Rooms Left: "
 				+ availableRoomsEconomic.size() + "\n\n" + "Luxurious Rooms Left: " + availableRoomsLuxurious.size());
 		roomAvailabilityArea.setEditable(false);
 		final String roomInformationHeader = "Information about the room: ";
@@ -54,9 +54,9 @@ public class ManagerViewPanel extends JPanel {
 		// ------ Room View Panel
 		JPanel roomView = new JPanel(new GridLayout(4, 1));
 		JLabel economicRoomInfo = new JLabel("Economic Room Information: ");
-		JPanel economicRoomPanel = new JPanel(new GridLayout(2, 5, 10, 10));
+		final JPanel economicRoomPanel = new JPanel(new GridLayout(2, 5, 10, 10));
 		JLabel luxuriousRoomInfo = new JLabel("Luxurious Room Information: ");
-		JPanel luxuriousRoomPanel = new JPanel(new GridLayout(2, 5, 10, 10));
+		final JPanel luxuriousRoomPanel = new JPanel(new GridLayout(2, 5, 10, 10));
 		setRoomPanels(economicRoomPanel, luxuriousRoomPanel, roomInformation, roomInformationHeader, hotelManager.getReservationsByDate(dateRangeModel.getDateTo()));
 		roomView.add(economicRoomInfo);
 		roomView.add(economicRoomPanel);
@@ -64,8 +64,8 @@ public class ManagerViewPanel extends JPanel {
 		roomView.add(luxuriousRoomPanel);
 
 		// ----- Grid Component
-		JLabel currentDayLabel = new JLabel();
-		CalendarGridComponent.Manager gridComp = new CalendarGridComponent.Manager(dateRangeModel, currentDayLabel);
+		final JLabel currentDayLabel = new JLabel();
+		final CalendarGridComponent.Manager gridComp = new CalendarGridComponent.Manager(dateRangeModel, currentDayLabel);
 		dateRangeModel.addChangeListener(new ChangeListener() {
 			public void stateChanged(ChangeEvent e) {
 				setRoomsAvailable(dateRangeModel);
@@ -120,7 +120,7 @@ public class ManagerViewPanel extends JPanel {
 	 * @param luxuriousRoomPanel the luxurious room panel
 	 * @param roomInformation the room information text are
 	 */
-	private void setRoomPanels(JPanel economicRoomPanel, JPanel luxuriousRoomPanel, JTextArea roomInformation, String roomInformationHeader, ArrayList<Reservation> reservationsForDay) {
+	private void setRoomPanels(JPanel economicRoomPanel, JPanel luxuriousRoomPanel, final JTextArea roomInformation, String roomInformationHeader, ArrayList<Reservation> reservationsForDay) {
 
 		// Remove Components
 		for (Component c : economicRoomPanel.getComponents()) {
@@ -203,9 +203,9 @@ public class ManagerViewPanel extends JPanel {
 	 */
 	private void setRoomsAvailable(DateRangeReservationModel dateRangeModel) {
 		dateRangeModel.setRoomSelected(true, false);
-		availableRoomsEconomic = dateRangeModel.getAvailableRooms(new ArrayList<>());
+		availableRoomsEconomic = dateRangeModel.getAvailableRooms(new ArrayList<Reservation>());
 		dateRangeModel.setRoomSelected(false, false);
-		availableRoomsLuxurious = dateRangeModel.getAvailableRooms(new ArrayList<>());
+		availableRoomsLuxurious = dateRangeModel.getAvailableRooms(new ArrayList<Reservation>());
 	}
 
 }

@@ -33,8 +33,8 @@ public class GuestSelectionPanel extends JPanel {
 		JPanel textFieldPanel = new JPanel(new GridLayout(4, 2));
 		JLabel checkInLabel = new JLabel(" Check in");
 		JLabel checkOutLabel = new JLabel(" Check out");
-		JTextField dateFrom = new JTextField((new MyDate(new Date()).getDateString()));
-		JTextField dateTo = new JTextField((new MyDate(new Date()).getDateString()));
+		final JTextField dateFrom = new JTextField((new MyDate(new Date()).getDateString()));
+		final JTextField dateTo = new JTextField((new MyDate(new Date()).getDateString()));
 		dateFrom.setEditable(false);
 		dateFrom.addMouseListener(new MouseAdapter() {
 			public void mousePressed(MouseEvent e) {

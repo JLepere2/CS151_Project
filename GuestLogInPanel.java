@@ -36,7 +36,7 @@ public class GuestLogInPanel extends JPanel {
 		this.setLayout(new BorderLayout());
 		
 		//-------FRAME CENTER PANEL------//
-		JPanel frameCenterPanel = new JPanel(new CardLayout());
+		final JPanel frameCenterPanel = new JPanel(new CardLayout());
 		frameCenterPanel.setVisible(false);
 
 		//-----SIGN UP CARD PANEL-----//

@@ -28,7 +28,7 @@ public class CalendarGridFrame extends JFrame {
 	 * @param otherTextField the other text field (To or From).
 	 * @param settingFrom true if setting the from text field, false if setting the to text field.
 	 */
-	public CalendarGridFrame(final JTextField theTextField, final JTextField otherTextField, boolean settingFrom) {
+	public CalendarGridFrame(final JTextField theTextField, final JTextField otherTextField, final boolean settingFrom) {
 		
 		//----Panel Characteristics
 		this.setTitle(FRAME_TITLE);
@@ -37,10 +37,10 @@ public class CalendarGridFrame extends JFrame {
 		this.setAlwaysOnTop(true);
 		
 		//---- Current Day Label
-		JLabel currentDayLabel = new JLabel();
+		final JLabel currentDayLabel = new JLabel();
 		
 		//----Grid Component
-		CalendarGridComponent.Guest gridComp = new CalendarGridComponent.Guest(currentDayLabel);
+		final CalendarGridComponent.Guest gridComp = new CalendarGridComponent.Guest(currentDayLabel);
 		
 		//-------SOUTH PANEL-------//
 		JPanel southPanel = new JPanel(new BorderLayout());

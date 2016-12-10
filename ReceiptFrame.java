@@ -25,7 +25,7 @@ public class ReceiptFrame extends JFrame {
 	 * @param currentAccount the current account.
 	 * @param reservations the reservations that were JUST processed.
 	 */
-	public ReceiptFrame(GuestAccount currentAccount, ArrayList<Reservation> reservations) {
+	public ReceiptFrame(final GuestAccount currentAccount, final ArrayList<Reservation> reservations) {
 		// ----Instance Variables
 		this.receiptFormat = new SimpleReceipt();
 		
@@ -42,7 +42,7 @@ public class ReceiptFrame extends JFrame {
 		this.setAlwaysOnTop(true);
 
 		// ----Receipt Text Area
-		JTextArea receiptTextArea = new JTextArea(receiptFormat.getReceipt(currentAccount, reservations));
+		final JTextArea receiptTextArea = new JTextArea(receiptFormat.getReceipt(currentAccount, reservations));
 		receiptTextArea.setEditable(false);
 
 		// -----Format panel

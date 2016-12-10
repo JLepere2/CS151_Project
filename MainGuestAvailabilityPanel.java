@@ -41,15 +41,15 @@ public class MainGuestAvailabilityPanel extends JPanel {
 		this.setLayout(new BorderLayout());
 
 		//----Reservation Text Area Queue----//
-		JTextArea reservationQueueTextArea = new JTextArea(queueHeader);
+		final JTextArea reservationQueueTextArea = new JTextArea(queueHeader);
 		
 		//----AVAILABILITY TEXT FIELD
-		JTextArea availabilityTextArea = new JTextArea();
+		final JTextArea availabilityTextArea = new JTextArea();
 		
 		//-----ROOM NUMBER PANEL-----//
 		JPanel roomNumberPanel = new JPanel();
 		JLabel roomNumberLabel = new JLabel("Enter the room number to reserve.");
-		JTextField roomNumberTextField = new JTextField("");
+		final JTextField roomNumberTextField = new JTextField("");
 		roomNumberTextField.setPreferredSize(new Dimension(40, 20));
 		roomNumberPanel.add(roomNumberLabel);
 		roomNumberPanel.add(roomNumberTextField);
