@@ -11,22 +11,40 @@ public class ReservationCollection implements Serializable {
 	private static final long serialVersionUID = 1000L;
 	private static int LUXURIOUS_ROOMS = 10;
 	private static int ECONOMIC_ROOMS = 10;
-	
 	private ArrayList<Reservation> reservations;
 	
 	/**
-	 * Creates a new RoomManager
+	 * Creates a new ReservationCollection.
 	 */
 	public ReservationCollection() {
 		this.reservations = new ArrayList<>();
 	}
 	
-	public void addReservation(Reservation r) {
-		reservations.add(r);
+	/**
+	 * Adds a reservation to the collection.
+	 * @param theReservation the reservation
+	 */
+	public void addReservation(Reservation theReservation) {
+		reservations.add(theReservation);
 	}
 	
 	public String toString() {
 		return this.getClass().getName() + reservations.toString();
+	}
+	
+	/**
+	 * Gets the reservations if the date falls on or between the start time and end time of the reservation
+	 * @param date the date
+	 * @return the reservations that contain the date
+	 */
+	public ArrayList<Reservation> getReservationsByDate(MyDate date) {
+		ArrayList<Reservation> theReservations = new ArrayList<>();
+		for (Reservation r : reservations) {
+			if (r.getCheckInDate().compareTo(date) <= 0 && r.getCheckOutDate().compareTo(date) >= 0) {
+				theReservations.add(r);
+			}
+		}
+		return theReservations;
 	}
 	
 	/**
@@ -86,7 +104,15 @@ public class ReservationCollection implements Serializable {
 		
 	}
 	
-	public boolean doesConflict(MyDate s1, MyDate e1, MyDate s2, MyDate e2) {
+	/**
+	 * Checks if the reservation dates conflict.
+	 * @param s1 the start time of the first reservation.
+	 * @param e1 the end time of the first reservation.
+	 * @param s2 the start time of the second reservation.
+	 * @param e2 the end time of the second reservation.
+	 * @return true if the reservation times conflict, false otherwise.
+	 */
+	private static boolean doesConflict(MyDate s1, MyDate e1, MyDate s2, MyDate e2) {
 		int inCompIn = s1.compareTo(s2);
 		int outCompOut = e1.compareTo(e2);
 		int inCompOut = s1.compareTo(e2);

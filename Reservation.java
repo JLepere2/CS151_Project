@@ -5,10 +5,9 @@ import java.io.Serializable;
  * @author JLepere2
  * Version 1.1
  */
-public class Reservation implements Serializable {
+public class Reservation implements Serializable, Comparable<Reservation> {
 
 	private static final long serialVersionUID = 73737828466L;
-
 	private GuestAccount guest;
 	private HotelRoom room;
 	private MyDate checkInDate, checkOutDate;
@@ -25,6 +24,10 @@ public class Reservation implements Serializable {
 		this.room = theRoom;
 		this.checkInDate = theCheckInDate;
 		this.checkOutDate = theCheckOutDate;
+	}
+	
+	public int compareTo(Reservation otherReservation) {
+		return checkInDate.compareTo(otherReservation.checkInDate);
 	}
 	
 	/**
@@ -56,7 +59,23 @@ public class Reservation implements Serializable {
 	 * @return the time range of this reservation
 	 */
 	public String getTime() {
-		return MyDate.getDateString(checkInDate) + " - " + MyDate.getDateString(checkOutDate);
+		return checkInDate.getDateString() + " - " + checkOutDate.getDateString();
+	}
+	
+	/**
+	 * Gets the id of the guest for this reservation
+	 * @return the id of the guest
+	 */
+	public String getGuestId() {
+		return guest.getId() + "";
+	}
+	
+	/**
+	 * Gets the name of the guest for this reservation
+	 * @return the name of the guest
+	 */
+	public String getGuestName() {
+		return guest.getLastName() + ", " + guest.getFirstName(); 
 	}
 	
 }

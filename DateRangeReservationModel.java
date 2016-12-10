@@ -7,20 +7,25 @@ import javax.swing.event.ChangeListener;
 /**
  * A model for the date range for the main guest view
  * @author JLepere2
- * Version 1.1
+ * Version 1.1 complicated.
+ * Version 1.2 simplified.
  */
 public class DateRangeReservationModel {
 
 	private HotelManager hotelManager;
-	private String dateFrom, dateTo;
+	private MyDate dateFrom, dateTo;
 	private ArrayList<ChangeListener> listeners;
 	private boolean economicSelected;
 	
+	/**
+	 * Creates a date range reservation model.
+	 * @param theHotelManager the hotel manager.
+	 */
 	public DateRangeReservationModel(HotelManager theHotelManager) {
 		this.hotelManager = theHotelManager;
 		this.listeners = new ArrayList<>();
-		this.dateFrom = MyDate.getDateString(MyDate.getDate(new Date()));
-		this.dateTo = MyDate.getDateString(MyDate.getDate(new Date()));
+		this.dateFrom = new MyDate(new Date());
+		this.dateTo = new MyDate(new Date());
 		this.economicSelected = true;
 	}
 	
@@ -29,7 +34,7 @@ public class DateRangeReservationModel {
 	 * @param dateFrom true to set the date from, false to set the date to
 	 * @param theDate the date to set
 	 */
-	public void setDate(boolean dateFrom, String theDate) {
+	public void setDate(boolean dateFrom, MyDate theDate) {
 		if (dateFrom) {
 			this.dateFrom = theDate;
 		} else {
@@ -42,6 +47,11 @@ public class DateRangeReservationModel {
 		}
 	}
 	
+	/**
+	 * Sets the room selected.
+	 * @param economicSelected true for economic, false for luxurious.
+	 * @param updateListeners true to update the listeners, false otherwise.
+	 */
 	public void setRoomSelected(boolean economicSelected, boolean updateListeners) {
 		this.economicSelected = economicSelected;
 		
@@ -53,8 +63,12 @@ public class DateRangeReservationModel {
 		}
 	}
 	
+	/**
+	 * Gets a header for the current date range of the model.
+	 * @return a header for the current date range of the model.
+	 */
 	public String getDateRangeHeader() {
-		String header = dateFrom + " - " + dateTo + ":\n";
+		String header = dateFrom.getDateString() + " - " + dateTo.getDateString() + ":\n";
 		if (economicSelected) {
 			header = "Economic Rooms From " + header;
 		} else {
@@ -63,8 +77,13 @@ public class DateRangeReservationModel {
 		return header;
 	}
 	
-	public ArrayList<HotelRoom> getReservationAvailable(ArrayList<Reservation> resQueue) {
-		ArrayList<HotelRoom> roomsAvailable = hotelManager.getAvailableRooms(resQueue, MyDate.getDate(dateFrom), MyDate.getDate(dateTo));
+	/**
+	 * Gets the available rooms for the model.
+	 * @param resQueue the queue of reservations at the guest view.
+	 * @return the available rooms for the model.
+	 */
+	public ArrayList<HotelRoom> getAvailableRooms(ArrayList<Reservation> resQueue) {
+		ArrayList<HotelRoom> roomsAvailable = hotelManager.getAvailableRooms(resQueue, dateFrom, dateTo);
 		ArrayList<HotelRoom> roomsToReturn = new ArrayList<>();
 		if (economicSelected) {
 			for (HotelRoom r : roomsAvailable) {
@@ -82,15 +101,27 @@ public class DateRangeReservationModel {
 		return roomsToReturn;
 	}
 	
+	/**
+	 * Adds a change listener to the model.
+	 * @param listener the listener.
+	 */
 	public void addChangeListener(ChangeListener listener) {
 		listeners.add(listener);
 	}
 	
-	public String getDateFrom() {
+	/**
+	 * Gets the from date.
+	 * @return the from date.
+	 */
+	public MyDate getDateFrom() {
 		return dateFrom;
 	}
 	
-	public String getDateTo() {
+	/**
+	 * Gets the to date.
+	 * @return the to date.
+	 */
+	public MyDate getDateTo() {
 		return dateTo;
 	}
 	

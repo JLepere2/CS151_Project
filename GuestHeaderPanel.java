@@ -10,13 +10,10 @@ import javax.swing.JPanel;
  * @author JLepere2
  * Version 1.1
  */
-public class MainGuestHeaderPanel extends JPanel {
+public class GuestHeaderPanel extends JPanel {
 
 	private static final long serialVersionUID = 1531L;
 
-<<<<<<< HEAD
-	public MainGuestHeaderPanel(final MainCardPanel mainCardPanel, HotelManager hotelManager, final MainGuestSelectionPanel selectionPanel, final MainGuestAvailabilityPanel availabilityPanel) {
-=======
 	/**
 	 * Creates a header panel for the guest view.
 	 * @param mainCardPanel the main card panel.
@@ -24,8 +21,7 @@ public class MainGuestHeaderPanel extends JPanel {
 	 * @param selectionPanel the guest selection view panel.
 	 * @param availabilityPanel the availability view panel.
 	 */
-	public MainGuestHeaderPanel(final MainCardPanel mainCardPanel, final HotelManager hotelManager, final MainGuestSelectionPanel selectionPanel, final MainGuestAvailabilityPanel availabilityPanel) {
->>>>>>> JLepere2-patch-2
+	public GuestHeaderPanel(final MainCardPanel mainCardPanel, final HotelManager hotelManager, final GuestSelectionPanel selectionPanel, final GuestAvailabilityPanel availabilityPanel, final JPanel cardPanel) {
 		
 		JButton backButton = new JButton("Sign Out");
 		backButton.addActionListener(new ActionListener() {
@@ -41,12 +37,13 @@ public class MainGuestHeaderPanel extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 				selectionPanel.setVisible(true);
 				selectionPanel.repaint();
+				((CardLayout) cardPanel.getLayout()).show(cardPanel, MainGuestViewPanel.makeReservationId);
 			}
 		});
 		JButton viewOrCancelReservationButton = new JButton("View/Cancel a Reservation");
 		viewOrCancelReservationButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-
+				((CardLayout) cardPanel.getLayout()).show(cardPanel, MainGuestViewPanel.viewReservationId);
 			}
 		});
 		this.add(backButton);

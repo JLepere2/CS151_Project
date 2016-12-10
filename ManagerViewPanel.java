@@ -16,16 +16,22 @@ import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
 /**
- * Created by Rodion on 12/7/16.
+ * The view panel for the manager
+ * @author Rodion Yaryy
+ * Version 1.1
  */
 public class ManagerViewPanel extends JPanel {
 
-	private static String identifier = "ManagerViewPanel";
 	private static final long serialVersionUID = 1215316L;
 	private ArrayList<HotelRoom> availableRoomsEconomic;
 	private ArrayList<HotelRoom> availableRoomsLuxurious;
 
-	public ManagerViewPanel(MainCardPanel mainCardPanel, final HotelManager hotelManager) {
+	/**
+	 * Creates a ManagerViewPanel.
+	 * @param mainCardPanel the main card panel associated with this state panel.
+	 * @param hotelManager the hotel manager.
+	 */
+	public ManagerViewPanel(final MainCardPanel mainCardPanel, final HotelManager hotelManager) {
 
 		// ------Instantiate Panel
 		this.setLayout(new GridLayout(2, 2, 20, 20));
@@ -40,7 +46,10 @@ public class ManagerViewPanel extends JPanel {
 		// ------ Room Available Text Area
 		final JTextArea roomAvailabilityArea = new JTextArea("Room Availability: " + "\n\n" + "Economic Rooms Left: "
 				+ availableRoomsEconomic.size() + "\n\n" + "Luxurious Rooms Left: " + availableRoomsLuxurious.size());
-		final JTextArea roomInformation = new JTextArea("Information about the room: ");
+		roomAvailabilityArea.setEditable(false);
+		final String roomInformationHeader = "Information about the room: ";
+		final JTextArea roomInformation = new JTextArea(roomInformationHeader);
+		roomInformation.setEditable(false);
 
 		// ------ Room View Panel
 		JPanel roomView = new JPanel(new GridLayout(4, 1));
@@ -48,7 +57,11 @@ public class ManagerViewPanel extends JPanel {
 		final JPanel economicRoomPanel = new JPanel(new GridLayout(2, 5, 10, 10));
 		JLabel luxuriousRoomInfo = new JLabel("Luxurious Room Information: ");
 		final JPanel luxuriousRoomPanel = new JPanel(new GridLayout(2, 5, 10, 10));
+<<<<<<< HEAD
 		setRoomPanels(economicRoomPanel, luxuriousRoomPanel, roomInformation);
+=======
+		setRoomPanels(economicRoomPanel, luxuriousRoomPanel, roomInformation, roomInformationHeader, hotelManager.getReservationsByDate(dateRangeModel.getDateTo()));
+>>>>>>> JLepere2-patch-2
 		roomView.add(economicRoomInfo);
 		roomView.add(economicRoomPanel);
 		roomView.add(luxuriousRoomInfo);
@@ -56,15 +69,23 @@ public class ManagerViewPanel extends JPanel {
 
 		// ----- Grid Component
 		final JLabel currentDayLabel = new JLabel();
+<<<<<<< HEAD
 		final CalendarGridComponent gridComp = new CalendarGridComponent.Manager(dateRangeModel, currentDayLabel);
+=======
+		final CalendarGridComponent.Manager gridComp = new CalendarGridComponent.Manager(dateRangeModel, currentDayLabel);
+>>>>>>> JLepere2-patch-2
 		dateRangeModel.addChangeListener(new ChangeListener() {
 			public void stateChanged(ChangeEvent e) {
 				setRoomsAvailable(dateRangeModel);
-				setRoomPanels(economicRoomPanel, luxuriousRoomPanel, roomInformation);
+				setRoomPanels(economicRoomPanel, luxuriousRoomPanel, roomInformation, roomInformationHeader, hotelManager.getReservationsByDate(new MyDate(gridComp.getCurrentDayShort())));
 				roomAvailabilityArea.setText(
 						"Room Availability: " + "\n\n" + "Economic Rooms Left: " + availableRoomsEconomic.size()
 								+ "\n\n" + "Luxurious Rooms Left: " + availableRoomsLuxurious.size());
 				roomAvailabilityArea.repaint();
+				currentDayLabel.setText(gridComp.getCurrentDayLong());
+				currentDayLabel.repaint();
+				roomInformation.setText(roomInformationHeader);
+				roomInformation.repaint();
 			}
 		});
 
@@ -76,16 +97,16 @@ public class ManagerViewPanel extends JPanel {
 		previousMonthButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				gridComp.changeMonth(false);
-				currentDayLabel.setText(gridComp.getCurrentDayLong());
-				currentDayLabel.repaint();
+				dateRangeModel.setDate(true, new MyDate(gridComp.getCurrentDayShort()));
+				dateRangeModel.setDate(false, new MyDate(gridComp.getCurrentDayShort()));
 			}
 		});
 		JButton nextMonthButton = new JButton("   >   ");
 		nextMonthButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				gridComp.changeMonth(true);
-				currentDayLabel.setText(gridComp.getCurrentDayLong());
-				currentDayLabel.repaint();
+				dateRangeModel.setDate(true, new MyDate(gridComp.getCurrentDayShort()));
+				dateRangeModel.setDate(false, new MyDate(gridComp.getCurrentDayShort()));
 			}
 		});
 		nextPreviousPanel.add(previousMonthButton);
@@ -102,25 +123,16 @@ public class ManagerViewPanel extends JPanel {
 	}
 
 	/**
-	 * Gets the state identifier for this state
-	 * 
-	 * @return the state id for this state
-	 */
-	public static String getStateIdentifier() {
-		return identifier;
-	}
-
-	/**
 	 * Sets the room panels with the current date range
-	 * 
-	 * @param economicRoomPanel
-	 *            the economic room panel
-	 * @param luxuriousRoomPanel
-	 *            the luxurious room panel
-	 * @param roomInformation
-	 *            the room information text are
+	 * @param economicRoomPanel the economic room panel
+	 * @param luxuriousRoomPanel the luxurious room panel
+	 * @param roomInformation the room information text are
 	 */
+<<<<<<< HEAD
 	private void setRoomPanels(JPanel economicRoomPanel, JPanel luxuriousRoomPanel, final JTextArea roomInformation) {
+=======
+	private void setRoomPanels(JPanel economicRoomPanel, JPanel luxuriousRoomPanel, final JTextArea roomInformation, String roomInformationHeader, ArrayList<Reservation> reservationsForDay) {
+>>>>>>> JLepere2-patch-2
 
 		// Remove Components
 		for (Component c : economicRoomPanel.getComponents()) {
@@ -141,15 +153,21 @@ public class ManagerViewPanel extends JPanel {
 					available = true;
 				}
 			}
-			final String roomInfoText;
+			String roomInfoText = roomInformationHeader;
 			if (available) {
-				roomInfoText = "Room is available.";
+				roomInfoText += "\n\nRoom is available.";
 			} else {
-				roomInfoText = "Room is occupied.";
+				roomInfoText += "\n\nRoom is occupied.";
 			}
+			for (Reservation r : reservationsForDay) {
+				if (r.getHotelRoom().getRoomType().equals(EconomicRoom.identifier) && i == r.getHotelRoom().getRoomNumber()) {
+					roomInfoText += "\n\nGuest Name: " + r.getGuestName() + "\nGuest Id: " +  r.getGuestId() + "\nLength of Reservation: " + r.getTime();
+				}
+			}
+			final String theInfo = roomInfoText;
 			button.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					roomInformation.setText(roomInfoText);
+					roomInformation.setText(theInfo);
 				}
 			});
 			economicRoomPanel.add(button);
@@ -165,15 +183,21 @@ public class ManagerViewPanel extends JPanel {
 					available = true;
 				}
 			}
-			final String roomInfoText;
+			String roomInfoText = roomInformationHeader;
 			if (available) {
-				roomInfoText = "Room is available.";
+				roomInfoText += "\n\nRoom is available.";
 			} else {
-				roomInfoText = "Room is occupied.";
+				roomInfoText += "\n\nRoom is occupied.";
 			}
+			for (Reservation r : reservationsForDay) {
+				if (r.getHotelRoom().getRoomType().equals(LuxuriousRoom.identifier) && i == r.getHotelRoom().getRoomNumber()) {
+					roomInfoText += "\n\nGuest Name: " + r.getGuestName() + "\nGuest Id: " +  r.getGuestId() + "\nLength of Reservation: " + r.getTime();
+				}
+			}
+			final String theInfo = roomInfoText;
 			button.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					roomInformation.setText(roomInfoText);
+					roomInformation.setText(theInfo);
 				}
 			});
 			luxuriousRoomPanel.add(button);
@@ -186,16 +210,20 @@ public class ManagerViewPanel extends JPanel {
 	}
 
 	/**
-	 * Sets the available rooms from the model
-	 * 
-	 * @param dateRangeModel
-	 *            the date range model
+	 * Sets the available rooms from the model.
+	 * @param dateRangeModel the date range model.
 	 */
 	private void setRoomsAvailable(DateRangeReservationModel dateRangeModel) {
 		dateRangeModel.setRoomSelected(true, false);
+<<<<<<< HEAD
 		availableRoomsEconomic = dateRangeModel.getReservationAvailable(new ArrayList<Reservation>());
 		dateRangeModel.setRoomSelected(false, false);
 		availableRoomsLuxurious = dateRangeModel.getReservationAvailable(new ArrayList<Reservation>());
+=======
+		availableRoomsEconomic = dateRangeModel.getAvailableRooms(new ArrayList<Reservation>());
+		dateRangeModel.setRoomSelected(false, false);
+		availableRoomsLuxurious = dateRangeModel.getAvailableRooms(new ArrayList<Reservation>());
+>>>>>>> JLepere2-patch-2
 	}
 
 }

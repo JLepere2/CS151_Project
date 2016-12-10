@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Collections;
 
 /**
  * A comprehensive receipt of all user reservations.
@@ -12,6 +13,7 @@ public class ComprehensiveReceipt implements ReceiptFormat {
 		for (Reservation r : guestAccount.getReservations()) {
 			theReservations.add(r);
 		}
+		Collections.sort(theReservations);
 		String receipt = "User id: " + guestAccount.getId() + "\n";
 		receipt += "Name: " + guestAccount.getLastName() + ", " + guestAccount.getFirstName() + "\n\n";
 		int total = 0;
@@ -20,7 +22,7 @@ public class ComprehensiveReceipt implements ReceiptFormat {
 			receipt += room.getRoomType() + room.getRoomNumber() + " " + r.getTime() + ": $" + room.getPrice() + "\n";
 			total += room.getPrice();
 		}
-		receipt += "\ntotal cost: " + total;
+		receipt += "\nTotal cost: " + total;
 		return receipt;
 	}
 	

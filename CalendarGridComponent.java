@@ -22,11 +22,8 @@ public abstract class CalendarGridComponent extends JComponent {
 
 	private static final long serialVersionUID = 1825482L;
 	private static String[] shortDays = {"Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"};
-	private String[] longMonths = {"January", "February", "March", "April", "May",
+	private static String[] longMonths = {"January", "February", "March", "April", "May",
 			"June", "July", "August", "September", "October", "November", "December"};
-	private static GregorianCalendar temp;
-	private static int currentDay;
-	
 	
 	/**
 	 * An inner class that is used for the guest view. The button actions are unique.
@@ -37,12 +34,14 @@ public abstract class CalendarGridComponent extends JComponent {
 		
 		private static final long serialVersionUID = 1346L;
 		private JLabel currentDayLabel;
+		private GregorianCalendar temp;
+		private int currentDay;
 		
 		/**
 		 * A CalendarGridComponent for the Guest View
 		 * @param theCurrentDayLabel the current day label
 		 */
-		public Guest(JLabel theCurrentDayLabel) {
+		public Guest(final JLabel theCurrentDayLabel) {
 			this.currentDayLabel = theCurrentDayLabel;
 			temp = new GregorianCalendar();
 			currentDay = temp.get(Calendar.DAY_OF_MONTH);
@@ -109,6 +108,36 @@ public abstract class CalendarGridComponent extends JComponent {
 			
 		}
 		
+		/**
+		 * Changes to the next or previous month.
+		 * @param nextMonth true to change to next, false for previous
+		 */
+		public void changeMonth(boolean nextMonth) {
+			if (nextMonth) {
+				temp.add(GregorianCalendar.MONTH, 1);
+			} else {
+				temp.add(GregorianCalendar.MONTH, -1);
+			}
+			currentDay = 1;
+			this.repaint();
+		}
+		
+		/**
+		 * Gets the current day of the grid in the format: January 1, 2017.
+		 * @return the current day of the grid
+		 */
+		public String getCurrentDayLong() {
+			return longMonths[temp.get(GregorianCalendar.MONTH)] + " " + currentDay + ", " + temp.get(Calendar.YEAR);
+		}
+		
+		/**
+		 * Gets the current day of the grid in the format: 01/01/2017
+		 * @return the current day of the grid
+		 */
+		public String getCurrentDayShort() {
+			return (new MyDate(temp.get(Calendar.YEAR),temp.get(GregorianCalendar.MONTH)+1,currentDay)).getDateString();
+		}
+		
 	}
 	
 	/**
@@ -121,12 +150,14 @@ public abstract class CalendarGridComponent extends JComponent {
 		private static final long serialVersionUID = 123624L;
 		private DateRangeReservationModel dateRangeModel;
 		private JLabel currentDayLabel;
+		private GregorianCalendar temp;
+		private int currentDay;
 		
 		/**
 		 * A CalendarGridComponent for the manager class.
 		 * @param theDateRangeModel the date range model.
 		 */
-		public Manager(DateRangeReservationModel theDateRangeModel, JLabel theCurrentDayLabel) {
+		public Manager(final DateRangeReservationModel theDateRangeModel, JLabel theCurrentDayLabel) {
 			this.currentDayLabel = theCurrentDayLabel;
 			this.dateRangeModel = theDateRangeModel;
 			temp = new GregorianCalendar();
@@ -179,8 +210,8 @@ public abstract class CalendarGridComponent extends JComponent {
 					public void actionPerformed(ActionEvent e) {
 						currentDay = d;
 						repaint();
-						dateRangeModel.setDate(true, getCurrentDayShort());
-						dateRangeModel.setDate(false, getCurrentDayShort());
+						dateRangeModel.setDate(true, new MyDate(getCurrentDayShort()));
+						dateRangeModel.setDate(false, new MyDate(getCurrentDayShort()));
 						currentDayLabel.setText(getCurrentDayLong());
 						currentDayLabel.repaint();
 					}
@@ -196,36 +227,36 @@ public abstract class CalendarGridComponent extends JComponent {
 			
 		}
 		
-	}
-	
-	/**
-	 * Changes to the next or previous month.
-	 * @param nextMonth true to change to next, false for previous
-	 */
-	public void changeMonth(boolean nextMonth) {
-		if (nextMonth) {
-			temp.add(GregorianCalendar.MONTH, 1);
-		} else {
-			temp.add(GregorianCalendar.MONTH, -1);
+		/**
+		 * Changes to the next or previous month.
+		 * @param nextMonth true to change to next, false for previous
+		 */
+		public void changeMonth(boolean nextMonth) {
+			if (nextMonth) {
+				temp.add(GregorianCalendar.MONTH, 1);
+			} else {
+				temp.add(GregorianCalendar.MONTH, -1);
+			}
+			currentDay = 1;
+			this.repaint();
 		}
-		currentDay = 1;
-		this.repaint();
-	}
-	
-	/**
-	 * Gets the current day of the grid in the format: January 1, 2017.
-	 * @return the current day of the grid
-	 */
-	public String getCurrentDayLong() {
-		return longMonths[temp.get(GregorianCalendar.MONTH)] + " " + currentDay + ", " + temp.get(Calendar.YEAR);
-	}
-	
-	/**
-	 * Gets the current day of the grid in the format: 01/01/2017
-	 * @return the current day of the grid
-	 */
-	public String getCurrentDayShort() {
-		return MyDate.getDateString(new MyDate(temp.get(Calendar.YEAR),temp.get(GregorianCalendar.MONTH)+1,currentDay));
+		
+		/**
+		 * Gets the current day of the grid in the format: January 1, 2017.
+		 * @return the current day of the grid
+		 */
+		public String getCurrentDayLong() {
+			return longMonths[temp.get(GregorianCalendar.MONTH)] + " " + currentDay + ", " + temp.get(Calendar.YEAR);
+		}
+		
+		/**
+		 * Gets the current day of the grid in the format: 01/01/2017
+		 * @return the current day of the grid
+		 */
+		public String getCurrentDayShort() {
+			return (new MyDate(temp.get(Calendar.YEAR),temp.get(GregorianCalendar.MONTH)+1,currentDay)).getDateString();
+		}
+		
 	}
 	
 }

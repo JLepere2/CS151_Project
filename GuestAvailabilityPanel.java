@@ -1,4 +1,7 @@
+import java.awt.BasicStroke;
 import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
@@ -12,6 +15,7 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
+import javax.swing.border.StrokeBorder;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
@@ -20,7 +24,7 @@ import javax.swing.event.ChangeListener;
  * @author JLepere2
  * Version 1.1
  */
-public class MainGuestAvailabilityPanel extends JPanel {
+public class GuestAvailabilityPanel extends JPanel {
 
 	private static final long serialVersionUID = 113546L;
 	private ArrayList<Reservation> reservationQueue;
@@ -33,24 +37,31 @@ public class MainGuestAvailabilityPanel extends JPanel {
 	 * @param dateRangeModel the date range model.
 	 * @param hotelManager the hotel manager.
 	 */
-	public MainGuestAvailabilityPanel(final MainCardPanel mainCardPanel, final DateRangeReservationModel dateRangeModel, final HotelManager hotelManager) {
+	public GuestAvailabilityPanel(final MainCardPanel mainCardPanel, final DateRangeReservationModel dateRangeModel, final HotelManager hotelManager) {
 		
 		this.availableRooms = new ArrayList<>();
 		this.reservationQueue = new ArrayList<>();
 		
 		this.setLayout(new BorderLayout());
+		
+		final int maxDays = 60;
 
 		//----Reservation Text Area Queue----//
 		final JTextArea reservationQueueTextArea = new JTextArea(queueHeader);
 		
-		//----AVAILABILITY TEXT FIELD
-		final JTextArea availabilityTextArea = new JTextArea();
+		//----AVAILABILITY PANEL
+		JPanel availabilityPanel = new JPanel(new BorderLayout());
+		final JPanel roomsAvailablePanel = new JPanel(new GridLayout(2, 5, 10, 10));
+		roomsAvailablePanel.setBorder(new StrokeBorder(new BasicStroke(1)));
+		final JLabel availableTextLabel = new JLabel(dateRangeModel.getDateRangeHeader());
+		availabilityPanel.add(availableTextLabel, BorderLayout.NORTH);
+		availabilityPanel.add(roomsAvailablePanel, BorderLayout.CENTER);
 		
 		//-----ROOM NUMBER PANEL-----//
 		JPanel roomNumberPanel = new JPanel();
-		JLabel roomNumberLabel = new JLabel("Enter the room number to reserve.");
+		JLabel roomNumberLabel = new JLabel("Enter the room number to reserve:");
 		final JTextField roomNumberTextField = new JTextField("");
-		roomNumberTextField.setPreferredSize(new Dimension(40, 20));
+		roomNumberTextField.setPreferredSize(new Dimension(30, 20));
 		roomNumberPanel.add(roomNumberLabel);
 		roomNumberPanel.add(roomNumberTextField);
 		
@@ -65,15 +76,22 @@ public class MainGuestAvailabilityPanel extends JPanel {
 					for (HotelRoom r : availableRooms) {
 						if (r.getRoomNumber() == roomSelected) {
 							valid = true;
-							Reservation res = new Reservation(mainCardPanel.getCurrentAccount(), r, dateRangeModel.getDateFrom(), dateRangeModel.getDateTo());
-							mainCardPanel.getCurrentAccount().addReservation(res);
-							hotelManager.addReservation(res);
-							ArrayList<Reservation> reservations = new ArrayList<>();
-							reservations.add(res);
-							showReceipt(mainCardPanel.getCurrentAccount(), reservations);
-							setAvailabilityTextArea(dateRangeModel, availabilityTextArea);
-							roomNumberTextField.setText("");
-							roomNumberTextField.repaint();
+							MyDate fromDate = dateRangeModel.getDateFrom();
+							MyDate toDate =  dateRangeModel.getDateTo();
+							System.out.println(fromDate.totalDays(toDate));
+							if (fromDate.totalDays(toDate)>maxDays) {
+								JOptionPane.showMessageDialog(null, "Max Reservation Stay of 60 Days is Exceded.");
+							} else {
+								Reservation res = new Reservation(mainCardPanel.getCurrentAccount(), r, fromDate, toDate);
+								mainCardPanel.getCurrentAccount().addReservation(res);
+								hotelManager.addReservation(res);
+								ArrayList<Reservation> reservations = new ArrayList<>();
+								reservations.add(res);
+								showReceipt(mainCardPanel.getCurrentAccount(), reservations);
+								setAvailabilityPanel(dateRangeModel, availableTextLabel, roomsAvailablePanel, roomNumberTextField);
+								roomNumberTextField.setText("");
+								roomNumberTextField.repaint();
+							}
 						}
 					}
 					if (!valid) {
@@ -126,7 +144,7 @@ public class MainGuestAvailabilityPanel extends JPanel {
 					hotelManager.addReservation(r);
 				}
 				showReceipt(mainCardPanel.getCurrentAccount(), reservationQueue);
-				setAvailabilityTextArea(dateRangeModel, availabilityTextArea);
+				setAvailabilityPanel(dateRangeModel, availableTextLabel, roomsAvailablePanel, roomNumberTextField);
 				reservationQueueTextArea.repaint();
 				roomNumberTextField.setText("");
 				roomNumberTextField.repaint();
@@ -147,12 +165,12 @@ public class MainGuestAvailabilityPanel extends JPanel {
 		comboPanel.add(new JScrollPane(reservationQueueTextArea), BorderLayout.CENTER);
 
 		//-----ADD TO PANEL----//
-		this.add(new JScrollPane(availabilityTextArea), BorderLayout.CENTER);
+		this.add(availabilityPanel, BorderLayout.CENTER);
 		this.add(comboPanel, BorderLayout.EAST);
 
 		dateRangeModel.addChangeListener(new ChangeListener() {
 			public void stateChanged(ChangeEvent e) {
-				setAvailabilityTextArea(dateRangeModel, availabilityTextArea);
+				setAvailabilityPanel(dateRangeModel, availableTextLabel, roomsAvailablePanel, roomNumberTextField);
 			}
 		});
 		
@@ -163,14 +181,43 @@ public class MainGuestAvailabilityPanel extends JPanel {
 	 * @param dateRangeModel the date range model
 	 * @param availabilityTextArea the availability text are
 	 */
-	private void setAvailabilityTextArea(DateRangeReservationModel dateRangeModel, JTextArea availabilityTextArea) {
-		availableRooms = dateRangeModel.getAvailableRooms(reservationQueue);
-		String availabilityText = dateRangeModel.getDateRangeHeader();
-		for (HotelRoom r : availableRooms) {
-			availabilityText += r.getRoomNumber() + "\n";
+	private void setAvailabilityPanel(DateRangeReservationModel dateRangeModel, JLabel availableTextLabel, JPanel roomsAvailablePanel, final JTextField roomNumberTextField) {
+		
+		// Remove current components
+		for (Component c : roomsAvailablePanel.getComponents()) {
+			roomsAvailablePanel.remove(c);
 		}
-		availabilityTextArea.setText(availabilityText);
-		availabilityTextArea.repaint();
+		
+		// Update Rooms Available
+		availableRooms = dateRangeModel.getAvailableRooms(reservationQueue);
+		
+		final int maxRooms = 10;
+		for (int i = 1; i <= maxRooms; i ++) {
+			boolean available = false;
+			for (HotelRoom r : availableRooms) {
+				if (r.getRoomNumber() == i) {
+					available = true;
+				}
+			}
+			JButton roomButton = new JButton(i+"");
+			roomButton.setForeground(Color.RED);
+			if (available) {
+				final String k = i + "";
+				roomButton.setForeground(Color.GREEN);
+				roomButton.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						roomNumberTextField.setText(k);
+						roomNumberTextField.repaint();
+					}
+				});
+			}
+			roomsAvailablePanel.add(roomButton);
+		}
+		
+		// Update
+		roomsAvailablePanel.revalidate();
+		availableTextLabel.setText(dateRangeModel.getDateRangeHeader());
+		availableTextLabel.repaint();
 	}
 	
 	/**
