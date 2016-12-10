@@ -20,7 +20,7 @@ public class ReceiptFrame extends JFrame {
 	private static final long serialVersionUID = 113625L;
 	private ReceiptFormat receiptFormat;
 	
-	public ReceiptFrame(GuestAccount currentAccount, ArrayList<Reservation> reservations) {
+	public ReceiptFrame(final GuestAccount currentAccount, final ArrayList<Reservation> reservations) {
 		// ----Instance Variables
 		this.receiptFormat = new SimpleReceipt();
 		
@@ -30,14 +30,14 @@ public class ReceiptFrame extends JFrame {
 		final int receiptFrameHeight = 400;
 
 		// -----Frame
-		JFrame receiptFrame = new JFrame(receiptFrameTitle);
+		final JFrame receiptFrame = new JFrame(receiptFrameTitle);
 		receiptFrame.setSize(receiptFrameWidth, receiptFrameHeight);
 		receiptFrame.setLocationRelativeTo(null);
 		receiptFrame.setResizable(false);
 		receiptFrame.setAlwaysOnTop(true);
 
 		// ----Receipt Text Area
-		JTextArea receiptTextArea = new JTextArea(receiptFormat.getReceipt(currentAccount, reservations));
+		final JTextArea receiptTextArea = new JTextArea(receiptFormat.getReceipt(currentAccount, reservations));
 		receiptTextArea.setEditable(false);
 
 		// -----Format panel

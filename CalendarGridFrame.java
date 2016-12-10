@@ -22,7 +22,7 @@ public class CalendarGridFrame extends JFrame {
 	private static int FRAME_SIZE = 300;
 	private static String FRAME_TITLE = "Select Date";
 	
-	public CalendarGridFrame(JTextField theTextField, JTextField otherTextField, boolean settingFrom) {
+	public CalendarGridFrame(final JTextField theTextField, final JTextField otherTextField, final boolean settingFrom) {
 		
 		//----Panel Characteristics
 		this.setTitle(FRAME_TITLE);
@@ -31,10 +31,10 @@ public class CalendarGridFrame extends JFrame {
 		this.setAlwaysOnTop(true);
 		
 		//---- Current Day Label
-		JLabel currentDayLabel = new JLabel();
+		final JLabel currentDayLabel = new JLabel();
 		
 		//----Grid Component
-		CalendarGridComponent gridComp = new CalendarGridComponent.Guest(currentDayLabel);
+		final CalendarGridComponent gridComp = new CalendarGridComponent.Guest(currentDayLabel);
 		
 		//-------SOUTH PANEL-------//
 		JPanel southPanel = new JPanel(new BorderLayout());
