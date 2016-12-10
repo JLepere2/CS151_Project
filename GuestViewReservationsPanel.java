@@ -49,12 +49,12 @@ public class GuestViewReservationsPanel extends JPanel {
 		}
 		
 		// Table
-		JTable reservationTable = new JTable();
+		final JTable reservationTable = new JTable();
 		reservationTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-		String[] columnTitles = {"Reservations"};
+		final String[] columnTitles = {"Reservations"};
 		
 		// Resevation Text Area
-		JTextArea reservationInfoTextArea = new JTextArea();
+		final JTextArea reservationInfoTextArea = new JTextArea();
 		
 		// Cancel Reservation Button
 		JButton cancelButton = new JButton("Cancel");
@@ -93,7 +93,7 @@ public class GuestViewReservationsPanel extends JPanel {
 		});
 		
 		// Update reservations
-		ArrayList<Reservation> reservations = currentAccount.getReservations();
+		final ArrayList<Reservation> reservations = currentAccount.getReservations();
 		
 		if (reservations.size() > 0) {
 			// Table
