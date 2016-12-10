@@ -37,7 +37,7 @@ public class MainGuestViewPanel extends JPanel {
 		centerMakeReservationPanel.add(availabilityPanel, BorderLayout.CENTER);
 		
 		// --- CENTER VIEW RES PANEL --- //
-		JPanel viewResPanel = new JPanel();
+		GuestViewReservationsPanel viewResPanel = new GuestViewReservationsPanel(hotelManager);
 
 		// Card Panel
 		JPanel cardPanel = new JPanel(new CardLayout());
@@ -46,7 +46,7 @@ public class MainGuestViewPanel extends JPanel {
 
 		// ----HEADER----//
 		GuestHeaderPanel headerPanel = new GuestHeaderPanel(mainCardPanel, hotelManager, selectionPanel,
-				availabilityPanel, cardPanel);
+				availabilityPanel, viewResPanel, cardPanel);
 
 		this.add(headerPanel, BorderLayout.NORTH);
 		this.add(cardPanel, BorderLayout.CENTER);

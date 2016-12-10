@@ -95,4 +95,12 @@ public class GuestAccount implements Serializable {
 		return reservations;
 	}
 	
+	/**
+	 * Cancels the reservation.
+	 * @param r the reservation.
+	 */
+	public void cancelReservation(Reservation r) {
+		reservations.remove(r);
+	}
+	
 }
