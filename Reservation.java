@@ -51,6 +51,10 @@ public class Reservation implements Serializable {
 		return room;
 	}
 	
+	/**
+	 * Gets the time range of this reservation
+	 * @return the time range of this reservation
+	 */
 	public String getTime() {
 		return MyDate.getDateString(checkInDate) + " - " + MyDate.getDateString(checkOutDate);
 	}

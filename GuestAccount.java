@@ -32,6 +32,22 @@ public class GuestAccount implements Serializable {
 		
 	}
 	
+	/**
+	 * Gets the first name of the guest.
+	 * @return the first name of the guest
+	 */
+	public String getFirstName() {
+		return firstName;
+	}
+	
+	/**
+	 * Gets the last name of the guest.
+	 * @return the last name of the guest
+	 */
+	public String getLastName() {
+		return lastName;
+	}
+	
 	public String toString() {
 		return this.getClass().getName() + "[" + "id: " +
 				", firstName: " + firstName + ", lastName: " + 
@@ -69,6 +85,10 @@ public class GuestAccount implements Serializable {
 	 */
 	public static void setGuestAccountCount(int accountCount) {
 		guestAccountCount = accountCount;
+	}
+	
+	public ArrayList<Reservation> getReservations() {
+		return reservations;
 	}
 	
 }

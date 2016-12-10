@@ -33,7 +33,7 @@ public class MainGuestAvailabilityPanel extends JPanel {
 	 * @param dateRangeModel the date range model.
 	 * @param hotelManager the hotel manager.
 	 */
-	public MainGuestAvailabilityPanel(final MainCardPanel mainCardPanel, final DateRangeReservationModel dateRangeModel, final HotelManager hotelManager) {
+	public MainGuestAvailabilityPanel(MainCardPanel mainCardPanel, DateRangeReservationModel dateRangeModel, HotelManager hotelManager) {
 		
 		this.availableRooms = new ArrayList<>();
 		this.reservationQueue = new ArrayList<>();
@@ -41,15 +41,15 @@ public class MainGuestAvailabilityPanel extends JPanel {
 		this.setLayout(new BorderLayout());
 
 		//----Reservation Text Area Queue----//
-		final JTextArea reservationQueueTextArea = new JTextArea(queueHeader);
+		JTextArea reservationQueueTextArea = new JTextArea(queueHeader);
 		
 		//----AVAILABILITY TEXT FIELD
-		final JTextArea availabilityTextArea = new JTextArea();
+		JTextArea availabilityTextArea = new JTextArea();
 		
 		//-----ROOM NUMBER PANEL-----//
 		JPanel roomNumberPanel = new JPanel();
 		JLabel roomNumberLabel = new JLabel("Enter the room number to reserve.");
-		final JTextField roomNumberTextField = new JTextField("");
+		JTextField roomNumberTextField = new JTextField("");
 		roomNumberTextField.setPreferredSize(new Dimension(40, 20));
 		roomNumberPanel.add(roomNumberLabel);
 		roomNumberPanel.add(roomNumberTextField);
@@ -68,14 +68,15 @@ public class MainGuestAvailabilityPanel extends JPanel {
 							Reservation res = new Reservation(mainCardPanel.getCurrentAccount(), r, MyDate.getDate(dateRangeModel.getDateFrom()), MyDate.getDate(dateRangeModel.getDateTo()));
 							mainCardPanel.getCurrentAccount().addReservation(res);
 							hotelManager.addReservation(res);
+							ArrayList<Reservation> reservations = new ArrayList<>();
+							reservations.add(res);
+							showReceipt(mainCardPanel.getCurrentAccount(), reservations);
 							setAvailabilityTextArea(dateRangeModel, availabilityTextArea);
 							roomNumberTextField.setText("");
 							roomNumberTextField.repaint();
 						}
 					}
-					if (valid) {
-						JOptionPane.showMessageDialog(null, "Successfully Confirmed");
-					} else {
+					if (!valid) {
 						JOptionPane.showMessageDialog(null, "Invalid Room Number");
 					}
 					// TODO: receipt
@@ -123,16 +124,19 @@ public class MainGuestAvailabilityPanel extends JPanel {
 				for (Reservation r : reservationQueue) {
 					mainCardPanel.getCurrentAccount().addReservation(r);
 					hotelManager.addReservation(r);
-					// TODO: receipt
 				}
+				showReceipt(mainCardPanel.getCurrentAccount(), reservationQueue);
 				reservationQueue.clear();
+				reservationQueueTextArea.repaint();
+				roomNumberTextField.setText("");
+				roomNumberTextField.repaint();
 			}
 		});
 		buttonsPanel.add(confirmButton);
 		buttonsPanel.add(moreReservationsButton);
 		buttonsPanel.add(doneButton);
 		
-		//-----ROOM AND BUTTOn PANEL-----//
+		//-----ROOM AND BUTTON PANEL-----//
 		JPanel roomAndButtonPanel = new JPanel(new GridLayout(2, 1));
 		roomAndButtonPanel.add(roomNumberPanel);
 		roomAndButtonPanel.add(buttonsPanel);
@@ -174,6 +178,16 @@ public class MainGuestAvailabilityPanel extends JPanel {
 	 */
 	public void removeAllFromQueue() {
 		reservationQueue.clear();
+	}
+	
+	/**
+	 * Shows the receipt frame.
+	 * @param currentAccount the current guest account
+	 * @param reservations an array list of reservations that were just processed.
+	 */
+	private void showReceipt(GuestAccount currentAccount, ArrayList<Reservation> reservations) {
+		ReceiptFrame receiptFrame = new ReceiptFrame(currentAccount, reservations);
+		receiptFrame.setVisible(true);
 	}
 
 }
