@@ -34,7 +34,7 @@ public abstract class CalendarGridComponent extends JComponent {
 		
 		private static final long serialVersionUID = 1346L;
 		private JLabel currentDayLabel;
-		private GregorianCalendar temp;
+		private GregorianCalendar liveTime;
 		private int currentDay;
 		
 		/**
@@ -43,8 +43,8 @@ public abstract class CalendarGridComponent extends JComponent {
 		 */
 		public Guest(final JLabel theCurrentDayLabel) {
 			this.currentDayLabel = theCurrentDayLabel;
-			temp = new GregorianCalendar();
-			currentDay = temp.get(Calendar.DAY_OF_MONTH);
+			liveTime = new GregorianCalendar();
+			currentDay = liveTime.get(Calendar.DAY_OF_MONTH);
 		}
 
 		public void paintComponent(Graphics g) {
@@ -52,6 +52,8 @@ public abstract class CalendarGridComponent extends JComponent {
 			for (Component c : getComponents()) {
 				remove(c);
 			}
+			
+			GregorianCalendar temp = new GregorianCalendar(liveTime.get(Calendar.YEAR), liveTime.get(Calendar.MONTH), 1);
 			
 			final int headerHeight = 40;
 			
@@ -114,11 +116,12 @@ public abstract class CalendarGridComponent extends JComponent {
 		 */
 		public void changeMonth(boolean nextMonth) {
 			if (nextMonth) {
-				temp.add(GregorianCalendar.MONTH, 1);
+				liveTime.add(GregorianCalendar.MONTH, 1);
 			} else {
-				temp.add(GregorianCalendar.MONTH, -1);
+				liveTime.add(GregorianCalendar.MONTH, -1);
 			}
 			currentDay = 1;
+			liveTime.set(Calendar.DAY_OF_MONTH, currentDay);
 			this.repaint();
 		}
 		
@@ -127,7 +130,7 @@ public abstract class CalendarGridComponent extends JComponent {
 		 * @return the current day of the grid
 		 */
 		public String getCurrentDayLong() {
-			return longMonths[temp.get(GregorianCalendar.MONTH)] + " " + currentDay + ", " + temp.get(Calendar.YEAR);
+			return longMonths[liveTime.get(GregorianCalendar.MONTH)] + " " + currentDay + ", " + liveTime.get(Calendar.YEAR);
 		}
 		
 		/**
@@ -135,7 +138,7 @@ public abstract class CalendarGridComponent extends JComponent {
 		 * @return the current day of the grid
 		 */
 		public String getCurrentDayShort() {
-			return (new MyDate(temp.get(Calendar.YEAR),temp.get(GregorianCalendar.MONTH)+1,currentDay)).getDateString();
+			return (new MyDate(liveTime.get(Calendar.YEAR),liveTime.get(GregorianCalendar.MONTH)+1,currentDay)).getDateString();
 		}
 		
 	}
@@ -150,7 +153,7 @@ public abstract class CalendarGridComponent extends JComponent {
 		private static final long serialVersionUID = 123624L;
 		private DateRangeReservationModel dateRangeModel;
 		private JLabel currentDayLabel;
-		private GregorianCalendar temp;
+		private GregorianCalendar liveTime;
 		private int currentDay;
 		
 		/**
@@ -160,8 +163,8 @@ public abstract class CalendarGridComponent extends JComponent {
 		public Manager(final DateRangeReservationModel theDateRangeModel, JLabel theCurrentDayLabel) {
 			this.currentDayLabel = theCurrentDayLabel;
 			this.dateRangeModel = theDateRangeModel;
-			temp = new GregorianCalendar();
-			currentDay = temp.get(Calendar.DAY_OF_MONTH);
+			liveTime = new GregorianCalendar();
+			currentDay = liveTime.get(Calendar.DAY_OF_MONTH);
 		}
 		
 		public void paintComponent(Graphics g) {
@@ -169,6 +172,8 @@ public abstract class CalendarGridComponent extends JComponent {
 			for (Component c : this.getComponents()) {
 				this.remove(c);
 			}
+			
+			GregorianCalendar temp = new GregorianCalendar(liveTime.get(Calendar.YEAR), liveTime.get(Calendar.MONTH), 1);
 			
 			final int headerHeight = 40;
 			
@@ -233,11 +238,12 @@ public abstract class CalendarGridComponent extends JComponent {
 		 */
 		public void changeMonth(boolean nextMonth) {
 			if (nextMonth) {
-				temp.add(GregorianCalendar.MONTH, 1);
+				liveTime.add(GregorianCalendar.MONTH, 1);
 			} else {
-				temp.add(GregorianCalendar.MONTH, -1);
+				liveTime.add(GregorianCalendar.MONTH, -1);
 			}
 			currentDay = 1;
+			liveTime.set(Calendar.DAY_OF_MONTH, currentDay);
 			this.repaint();
 		}
 		
@@ -246,7 +252,7 @@ public abstract class CalendarGridComponent extends JComponent {
 		 * @return the current day of the grid
 		 */
 		public String getCurrentDayLong() {
-			return longMonths[temp.get(GregorianCalendar.MONTH)] + " " + currentDay + ", " + temp.get(Calendar.YEAR);
+			return longMonths[liveTime.get(GregorianCalendar.MONTH)] + " " + currentDay + ", " + liveTime.get(Calendar.YEAR);
 		}
 		
 		/**
@@ -254,7 +260,7 @@ public abstract class CalendarGridComponent extends JComponent {
 		 * @return the current day of the grid
 		 */
 		public String getCurrentDayShort() {
-			return (new MyDate(temp.get(Calendar.YEAR),temp.get(GregorianCalendar.MONTH)+1,currentDay)).getDateString();
+			return (new MyDate(liveTime.get(Calendar.YEAR),liveTime.get(GregorianCalendar.MONTH)+1,currentDay)).getDateString();
 		}
 		
 	}
