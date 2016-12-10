@@ -5,11 +5,23 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
+/**
+ * The header panel for the main guest view.
+ * @author JLepere2
+ * Version 1.1
+ */
 public class MainGuestHeaderPanel extends JPanel {
 
 	private static final long serialVersionUID = 1531L;
 
-	public MainGuestHeaderPanel(MainCardPanel mainCardPanel, HotelManager hotelManager, MainGuestSelectionPanel selectionPanel, MainGuestAvailabilityPanel availabilityPanel) {
+	/**
+	 * Creates a header panel for the guest view.
+	 * @param mainCardPanel the main card panel.
+	 * @param hotelManager the hotel manager.
+	 * @param selectionPanel the guest selection view panel.
+	 * @param availabilityPanel the availability view panel.
+	 */
+	public MainGuestHeaderPanel(final MainCardPanel mainCardPanel, final HotelManager hotelManager, final MainGuestSelectionPanel selectionPanel, final MainGuestAvailabilityPanel availabilityPanel) {
 		
 		JButton backButton = new JButton("Sign Out");
 		backButton.addActionListener(new ActionListener() {

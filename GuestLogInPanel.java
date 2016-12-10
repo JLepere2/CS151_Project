@@ -11,6 +11,11 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+/**
+ * A log in panel for the guest.
+ * @author JLepere2
+ * Version 1.1
+ */
 public class GuestLogInPanel extends JPanel {
 
 	private static final long serialVersionUID = 115643L;
@@ -21,7 +26,12 @@ public class GuestLogInPanel extends JPanel {
 	private static String lastNameText = "Last Name";
 	private static String accountIdText = "Account Id";
 	
-	public GuestLogInPanel(MainCardPanel mainCardPanel, HotelManager hotelManager) {
+	/**
+	 * Creates a GuestLogInPanel.
+	 * @param mainCardPanel the main card panel.
+	 * @param hotelManager the hotel manager.
+	 */
+	public GuestLogInPanel(final MainCardPanel mainCardPanel, final HotelManager hotelManager) {
 		
 		this.setLayout(new BorderLayout());
 		
@@ -129,6 +139,10 @@ public class GuestLogInPanel extends JPanel {
 
 	}
 	
+	/**
+	 * Gets the state identifier for this state panel.
+	 * @return the state identifier.
+	 */
 	public static String getStateIdentifier() {
 		return identifier;
 	}

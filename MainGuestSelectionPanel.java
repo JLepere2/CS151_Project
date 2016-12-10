@@ -13,18 +13,28 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+/**
+ * The MainGuestSelectionPanel for the GuestView
+ * @author JLepere2
+ *
+ */
 public class MainGuestSelectionPanel extends JPanel {
 
 	private static final long serialVersionUID = 11531L;
 
-	public MainGuestSelectionPanel(DateRangeReservationModel dateRangeModel, MainGuestAvailabilityPanel availabilityPanel) {
+	/**
+	 * Creates a MainGuestSelectionPanel.
+	 * @param dateRangeModel the date range model.
+	 * @param availabilityPanel the availability panel.
+	 */
+	public MainGuestSelectionPanel(final DateRangeReservationModel dateRangeModel, final MainGuestAvailabilityPanel availabilityPanel) {
 
 		//-----INPUT DATE PANEL----///
 		JPanel textFieldPanel = new JPanel(new GridLayout(4, 2));
 		JLabel checkInLabel = new JLabel(" Check in");
 		JLabel checkOutLabel = new JLabel(" Check out");
-		JTextField dateFrom = new JTextField(MyDate.getDateString(MyDate.getDate(new Date())));
-		JTextField dateTo = new JTextField(MyDate.getDateString(MyDate.getDate(new Date())));
+		JTextField dateFrom = new JTextField((new MyDate(new Date()).getDateString()));
+		JTextField dateTo = new JTextField((new MyDate(new Date()).getDateString()));
 		dateFrom.setEditable(false);
 		dateFrom.addMouseListener(new MouseAdapter() {
 			public void mousePressed(MouseEvent e) {
@@ -32,8 +42,8 @@ public class MainGuestSelectionPanel extends JPanel {
 				gridFrame.setVisible(true);
 				gridFrame.addWindowListener(new WindowAdapter() {
 					public void windowClosing(WindowEvent e) {
-						dateRangeModel.setDate(true, dateFrom.getText());
-						dateRangeModel.setDate(false, dateTo.getText());
+						dateRangeModel.setDate(true, new MyDate(dateFrom.getText()));
+						dateRangeModel.setDate(false, new MyDate(dateTo.getText()));
 					}
 				});
 			}
@@ -45,8 +55,8 @@ public class MainGuestSelectionPanel extends JPanel {
 				gridFrame.setVisible(true);
 				gridFrame.addWindowListener(new WindowAdapter() {
 					public void windowClosing(WindowEvent e) {
-						dateRangeModel.setDate(false, dateTo.getText());
-						dateRangeModel.setDate(true, dateFrom.getText());
+						dateRangeModel.setDate(false, new MyDate(dateTo.getText()));
+						dateRangeModel.setDate(true, new MyDate(dateFrom.getText()));
 					}
 				});
 			}

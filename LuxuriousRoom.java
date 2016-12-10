@@ -1,4 +1,3 @@
-
 /**
  * A luxurious hotel room.
  * @author JLepere2
@@ -13,6 +12,7 @@ public class LuxuriousRoom implements HotelRoom {
 	
 	/**
 	 * Creates a LuxuriosRoom.
+	 * @param theRoomNumber the room number of the room.
 	 */
 	public LuxuriousRoom(int theRoomNumber) {
 		this.roomNumber = theRoomNumber;

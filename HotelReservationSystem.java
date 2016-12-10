@@ -27,6 +27,7 @@ public class HotelReservationSystem {
 	 */
 	public static void main(String[] args) {
 		
+		// Load the Data
 		File f = new File(savedDataSerializationFile);
 		HotelManager manager = new HotelManager();
 		try {
@@ -41,6 +42,7 @@ public class HotelReservationSystem {
 		
 		GuestAccount.setGuestAccountCount(manager.getGuestAccountSize());
 		
+		// The Main Application Frame
 		JFrame mainApplicationFrame = new JFrame();
 		mainApplicationFrame.setSize(FRAME_WIDTH, FRAME_HEIGHT);
 		mainApplicationFrame.setTitle(FRAME_TITLE);
@@ -59,11 +61,14 @@ public class HotelReservationSystem {
 				}
 			}
 		});
-		MainCardPanel cards = new MainCardPanel();
+		
+		// The Main Card Panel
+		MainCardPanel cards = new MainCardPanel(mainApplicationFrame);
 		cards.add(new UserSelectionPanel(cards), UserSelectionPanel.getStateIdentifier());
 		cards.add(new GuestLogInPanel(cards, manager), GuestLogInPanel.getStateIdentifier());
 		cards.add(new MainGuestViewPanel(cards, manager), MainGuestViewPanel.getStateIdentifier());
 		cards.add(new ManagerPanel(cards, manager), ManagerPanel.getStateIdentifier());
+		
 		mainApplicationFrame.add(cards);
 		mainApplicationFrame.setVisible(true);
 	}

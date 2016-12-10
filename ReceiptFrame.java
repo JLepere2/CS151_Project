@@ -11,7 +11,7 @@ import javax.swing.JTextArea;
 import javax.swing.JScrollPane;
 
 /**
- * A frame for displaying the receipts
+ * A frame for displaying the receipts.
  * @author JLepere2 
  * Version 1.1
  */
@@ -20,6 +20,11 @@ public class ReceiptFrame extends JFrame {
 	private static final long serialVersionUID = 113625L;
 	private ReceiptFormat receiptFormat;
 	
+	/**
+	 * Creates a ReceiptFrame.
+	 * @param currentAccount the current account.
+	 * @param reservations the reservations that were JUST processed.
+	 */
 	public ReceiptFrame(GuestAccount currentAccount, ArrayList<Reservation> reservations) {
 		// ----Instance Variables
 		this.receiptFormat = new SimpleReceipt();
@@ -30,11 +35,11 @@ public class ReceiptFrame extends JFrame {
 		final int receiptFrameHeight = 400;
 
 		// -----Frame
-		JFrame receiptFrame = new JFrame(receiptFrameTitle);
-		receiptFrame.setSize(receiptFrameWidth, receiptFrameHeight);
-		receiptFrame.setLocationRelativeTo(null);
-		receiptFrame.setResizable(false);
-		receiptFrame.setAlwaysOnTop(true);
+		this.setTitle(receiptFrameTitle);
+		this.setSize(receiptFrameWidth, receiptFrameHeight);
+		this.setLocationRelativeTo(null);
+		this.setResizable(false);
+		this.setAlwaysOnTop(true);
 
 		// ----Receipt Text Area
 		JTextArea receiptTextArea = new JTextArea(receiptFormat.getReceipt(currentAccount, reservations));
@@ -68,7 +73,8 @@ public class ReceiptFrame extends JFrame {
 		JButton doneButton = new JButton(doneButtonText);
 		doneButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				receiptFrame.dispose();
+				reservations.clear();
+				dispose();
 			}
 		});
 
@@ -78,8 +84,8 @@ public class ReceiptFrame extends JFrame {
 		southPanel.add(doneButton, BorderLayout.SOUTH);
 
 		// ----Add Components
-		receiptFrame.add(new JScrollPane(receiptTextArea), BorderLayout.CENTER);
-		receiptFrame.add(southPanel, BorderLayout.SOUTH);
+		this.add(new JScrollPane(receiptTextArea), BorderLayout.CENTER);
+		this.add(southPanel, BorderLayout.SOUTH);
 
 	}
 

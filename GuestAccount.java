@@ -87,6 +87,10 @@ public class GuestAccount implements Serializable {
 		guestAccountCount = accountCount;
 	}
 	
+	/**
+	 * Gets the reservations for this guest.
+	 * @return the reservations for this guest.
+	 */
 	public ArrayList<Reservation> getReservations() {
 		return reservations;
 	}

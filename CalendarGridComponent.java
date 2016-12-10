@@ -27,7 +27,6 @@ public abstract class CalendarGridComponent extends JComponent {
 	private static GregorianCalendar temp;
 	private static int currentDay;
 	
-	
 	/**
 	 * An inner class that is used for the guest view. The button actions are unique.
 	 * @author JLepere2
@@ -42,7 +41,7 @@ public abstract class CalendarGridComponent extends JComponent {
 		 * A CalendarGridComponent for the Guest View
 		 * @param theCurrentDayLabel the current day label
 		 */
-		public Guest(JLabel theCurrentDayLabel) {
+		public Guest(final JLabel theCurrentDayLabel) {
 			this.currentDayLabel = theCurrentDayLabel;
 			temp = new GregorianCalendar();
 			currentDay = temp.get(Calendar.DAY_OF_MONTH);
@@ -126,7 +125,7 @@ public abstract class CalendarGridComponent extends JComponent {
 		 * A CalendarGridComponent for the manager class.
 		 * @param theDateRangeModel the date range model.
 		 */
-		public Manager(DateRangeReservationModel theDateRangeModel, JLabel theCurrentDayLabel) {
+		public Manager(final DateRangeReservationModel theDateRangeModel, JLabel theCurrentDayLabel) {
 			this.currentDayLabel = theCurrentDayLabel;
 			this.dateRangeModel = theDateRangeModel;
 			temp = new GregorianCalendar();
@@ -179,8 +178,8 @@ public abstract class CalendarGridComponent extends JComponent {
 					public void actionPerformed(ActionEvent e) {
 						currentDay = d;
 						repaint();
-						dateRangeModel.setDate(true, getCurrentDayShort());
-						dateRangeModel.setDate(false, getCurrentDayShort());
+						dateRangeModel.setDate(true, new MyDate(getCurrentDayShort()));
+						dateRangeModel.setDate(false, new MyDate(getCurrentDayShort()));
 						currentDayLabel.setText(getCurrentDayLong());
 						currentDayLabel.repaint();
 					}
@@ -225,7 +224,7 @@ public abstract class CalendarGridComponent extends JComponent {
 	 * @return the current day of the grid
 	 */
 	public String getCurrentDayShort() {
-		return MyDate.getDateString(new MyDate(temp.get(Calendar.YEAR),temp.get(GregorianCalendar.MONTH)+1,currentDay));
+		return (new MyDate(temp.get(Calendar.YEAR),temp.get(GregorianCalendar.MONTH)+1,currentDay)).getDateString();
 	}
 	
 }

@@ -61,12 +61,32 @@ public class HotelManager implements Serializable {
 		return guestAccounts.size();
 	}
 	
+	/**
+	 * Gets a list of available rooms for the date range.
+	 * @param resQueue a list of rooms that are in the guests queue.
+	 * @param theInDate the in date.
+	 * @param theOutDate the out date.
+	 * @return
+	 */
 	public ArrayList<HotelRoom> getAvailableRooms(ArrayList<Reservation> resQueue, MyDate theInDate, MyDate theOutDate) {
 		return reservationCollection.getAvailableRooms(resQueue, theInDate, theOutDate);
 	}
 	
+	/**
+	 * Adds a reservation.
+	 * @param theReservation the reservation.
+	 */
 	public void addReservation(Reservation theReservation) {
 		reservationCollection.addReservation(theReservation);
+	}
+	
+	/**
+	 * Gets a list of reservations that the date falls on.
+	 * @param date the date.
+	 * @return a list of reserations.
+	 */
+	public ArrayList<Reservation> getReservationsByDate(MyDate date) {
+		return reservationCollection.getReservationsByDate(date);
 	}
 	
 }

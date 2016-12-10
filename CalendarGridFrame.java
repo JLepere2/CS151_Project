@@ -22,7 +22,13 @@ public class CalendarGridFrame extends JFrame {
 	private static int FRAME_SIZE = 300;
 	private static String FRAME_TITLE = "Select Date";
 	
-	public CalendarGridFrame(JTextField theTextField, JTextField otherTextField, boolean settingFrom) {
+	/**
+	 * Creates a CalendarGridFrame.
+	 * @param theTextField the text field clicked to set the date.
+	 * @param otherTextField the other text field (To or From).
+	 * @param settingFrom true if setting the from text field, false if setting the to text field.
+	 */
+	public CalendarGridFrame(final JTextField theTextField, final JTextField otherTextField, boolean settingFrom) {
 		
 		//----Panel Characteristics
 		this.setTitle(FRAME_TITLE);
@@ -106,11 +112,11 @@ public class CalendarGridFrame extends JFrame {
 	 */
 	private boolean shouldSetOther(String theTextFieldText, JTextField otherTextField, boolean settingFrom) {
 		if (settingFrom) {
-			if (MyDate.getDate(theTextFieldText).compareTo(MyDate.getDate(otherTextField.getText())) > 0) {
+			if (new MyDate(theTextFieldText).compareTo(new MyDate(otherTextField.getText())) > 0) {
 				return true;
 			}
 		} else {
-			if (MyDate.getDate(theTextFieldText).compareTo(MyDate.getDate(otherTextField.getText())) < 0) {
+			if (new MyDate(theTextFieldText).compareTo(new MyDate(otherTextField.getText())) < 0) {
 				return true;
 			}
 		}

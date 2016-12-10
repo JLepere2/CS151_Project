@@ -12,7 +12,8 @@ public class EconomicRoom implements HotelRoom {
 	private int roomNumber;
 	
 	/**
-	 * Creates an Economic Room
+	 * Creates an Economic Room.
+	 * @param theRoomNumber the room number.
 	 */
 	public EconomicRoom(int theRoomNumber) {
 		this.roomNumber = theRoomNumber;
