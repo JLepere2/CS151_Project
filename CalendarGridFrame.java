@@ -22,15 +22,14 @@ public class CalendarGridFrame extends JFrame {
 	private static int FRAME_SIZE = 300;
 	private static String FRAME_TITLE = "Select Date";
 	
-<<<<<<< HEAD
-=======
+
 	/**
 	 * Creates a CalendarGridFrame.
 	 * @param theTextField the text field clicked to set the date.
 	 * @param otherTextField the other text field (To or From).
 	 * @param settingFrom true if setting the from text field, false if setting the to text field.
 	 */
->>>>>>> JLepere2-patch-2
+
 	public CalendarGridFrame(final JTextField theTextField, final JTextField otherTextField, final boolean settingFrom) {
 		
 		//----Panel Characteristics
@@ -43,12 +42,8 @@ public class CalendarGridFrame extends JFrame {
 		final JLabel currentDayLabel = new JLabel();
 		
 		//----Grid Component
-<<<<<<< HEAD
-		final CalendarGridComponent gridComp = new CalendarGridComponent.Guest(currentDayLabel);
-=======
+
 		final CalendarGridComponent.Guest gridComp = new CalendarGridComponent.Guest(currentDayLabel);
->>>>>>> JLepere2-patch-2
-		
 		//-------SOUTH PANEL-------//
 		JPanel southPanel = new JPanel(new BorderLayout());
 		currentDayLabel.setText(gridComp.getCurrentDayLong());

@@ -57,11 +57,7 @@ public class ManagerViewPanel extends JPanel {
 		final JPanel economicRoomPanel = new JPanel(new GridLayout(2, 5, 10, 10));
 		JLabel luxuriousRoomInfo = new JLabel("Luxurious Room Information: ");
 		final JPanel luxuriousRoomPanel = new JPanel(new GridLayout(2, 5, 10, 10));
-<<<<<<< HEAD
-		setRoomPanels(economicRoomPanel, luxuriousRoomPanel, roomInformation);
-=======
 		setRoomPanels(economicRoomPanel, luxuriousRoomPanel, roomInformation, roomInformationHeader, hotelManager.getReservationsByDate(dateRangeModel.getDateTo()));
->>>>>>> JLepere2-patch-2
 		roomView.add(economicRoomInfo);
 		roomView.add(economicRoomPanel);
 		roomView.add(luxuriousRoomInfo);
@@ -69,11 +65,7 @@ public class ManagerViewPanel extends JPanel {
 
 		// ----- Grid Component
 		final JLabel currentDayLabel = new JLabel();
-<<<<<<< HEAD
-		final CalendarGridComponent gridComp = new CalendarGridComponent.Manager(dateRangeModel, currentDayLabel);
-=======
 		final CalendarGridComponent.Manager gridComp = new CalendarGridComponent.Manager(dateRangeModel, currentDayLabel);
->>>>>>> JLepere2-patch-2
 		dateRangeModel.addChangeListener(new ChangeListener() {
 			public void stateChanged(ChangeEvent e) {
 				setRoomsAvailable(dateRangeModel);
@@ -128,11 +120,8 @@ public class ManagerViewPanel extends JPanel {
 	 * @param luxuriousRoomPanel the luxurious room panel
 	 * @param roomInformation the room information text are
 	 */
-<<<<<<< HEAD
-	private void setRoomPanels(JPanel economicRoomPanel, JPanel luxuriousRoomPanel, final JTextArea roomInformation) {
-=======
+
 	private void setRoomPanels(JPanel economicRoomPanel, JPanel luxuriousRoomPanel, final JTextArea roomInformation, String roomInformationHeader, ArrayList<Reservation> reservationsForDay) {
->>>>>>> JLepere2-patch-2
 
 		// Remove Components
 		for (Component c : economicRoomPanel.getComponents()) {
@@ -215,15 +204,9 @@ public class ManagerViewPanel extends JPanel {
 	 */
 	private void setRoomsAvailable(DateRangeReservationModel dateRangeModel) {
 		dateRangeModel.setRoomSelected(true, false);
-<<<<<<< HEAD
-		availableRoomsEconomic = dateRangeModel.getReservationAvailable(new ArrayList<Reservation>());
-		dateRangeModel.setRoomSelected(false, false);
-		availableRoomsLuxurious = dateRangeModel.getReservationAvailable(new ArrayList<Reservation>());
-=======
 		availableRoomsEconomic = dateRangeModel.getAvailableRooms(new ArrayList<Reservation>());
 		dateRangeModel.setRoomSelected(false, false);
 		availableRoomsLuxurious = dateRangeModel.getAvailableRooms(new ArrayList<Reservation>());
->>>>>>> JLepere2-patch-2
 	}
 
 }

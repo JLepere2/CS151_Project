@@ -26,14 +26,12 @@ public class GuestLogInPanel extends JPanel {
 	private static String lastNameText = "Last Name";
 	private static String accountIdText = "Account Id";
 	
-<<<<<<< HEAD
-=======
+
 	/**
 	 * Creates a GuestLogInPanel.
 	 * @param mainCardPanel the main card panel.
 	 * @param hotelManager the hotel manager.
 	 */
->>>>>>> JLepere2-patch-2
 	public GuestLogInPanel(final MainCardPanel mainCardPanel, final HotelManager hotelManager) {
 		
 		this.setLayout(new BorderLayout());

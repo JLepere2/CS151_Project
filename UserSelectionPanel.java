@@ -16,13 +16,11 @@ public class UserSelectionPanel extends JPanel {
 	private static final long serialVersionUID = 1256416L;
 	private static String identifier = "UserSelectionPanel";
 	
-<<<<<<< HEAD
-=======
+
 	/**
 	 * Creates a UserSelectionPanel.
 	 * @param mainCardPanel the main card panel.
 	 */
->>>>>>> JLepere2-patch-2
 	public UserSelectionPanel(final MainCardPanel mainCardPanel) {
 		this.setLayout(new BorderLayout());
 		JPanel headerPanel = new JPanel(new FlowLayout());

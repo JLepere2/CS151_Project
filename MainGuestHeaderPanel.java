@@ -14,9 +14,7 @@ public class MainGuestHeaderPanel extends JPanel {
 
 	private static final long serialVersionUID = 1531L;
 
-<<<<<<< HEAD
-	public MainGuestHeaderPanel(final MainCardPanel mainCardPanel, HotelManager hotelManager, final MainGuestSelectionPanel selectionPanel, final MainGuestAvailabilityPanel availabilityPanel) {
-=======
+
 	/**
 	 * Creates a header panel for the guest view.
 	 * @param mainCardPanel the main card panel.
@@ -25,8 +23,7 @@ public class MainGuestHeaderPanel extends JPanel {
 	 * @param availabilityPanel the availability view panel.
 	 */
 	public MainGuestHeaderPanel(final MainCardPanel mainCardPanel, final HotelManager hotelManager, final MainGuestSelectionPanel selectionPanel, final MainGuestAvailabilityPanel availabilityPanel) {
->>>>>>> JLepere2-patch-2
-		
+
 		JButton backButton = new JButton("Sign Out");
 		backButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {

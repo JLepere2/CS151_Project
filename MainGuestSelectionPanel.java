@@ -22,27 +22,20 @@ public class MainGuestSelectionPanel extends JPanel {
 
 	private static final long serialVersionUID = 11531L;
 
-<<<<<<< HEAD
-=======
 	/**
 	 * Creates a MainGuestSelectionPanel.
 	 * @param dateRangeModel the date range model.
 	 * @param availabilityPanel the availability panel.
 	 */
->>>>>>> JLepere2-patch-2
 	public MainGuestSelectionPanel(final DateRangeReservationModel dateRangeModel, final MainGuestAvailabilityPanel availabilityPanel) {
 
 		//-----INPUT DATE PANEL----///
 		JPanel textFieldPanel = new JPanel(new GridLayout(4, 2));
 		JLabel checkInLabel = new JLabel(" Check in");
 		JLabel checkOutLabel = new JLabel(" Check out");
-<<<<<<< HEAD
-		final JTextField dateFrom = new JTextField(MyDate.getDateString(MyDate.getDate(new Date())));
-		final JTextField dateTo = new JTextField(MyDate.getDateString(MyDate.getDate(new Date())));
-=======
+
 		final JTextField dateFrom = new JTextField((new MyDate(new Date()).getDateString()));
 		final JTextField dateTo = new JTextField((new MyDate(new Date()).getDateString()));
->>>>>>> JLepere2-patch-2
 		dateFrom.setEditable(false);
 		dateFrom.addMouseListener(new MouseAdapter() {
 			public void mousePressed(MouseEvent e) {

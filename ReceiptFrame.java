@@ -20,14 +20,12 @@ public class ReceiptFrame extends JFrame {
 	private static final long serialVersionUID = 113625L;
 	private ReceiptFormat receiptFormat;
 	
-<<<<<<< HEAD
-=======
+
 	/**
 	 * Creates a ReceiptFrame.
 	 * @param currentAccount the current account.
 	 * @param reservations the reservations that were JUST processed.
 	 */
->>>>>>> JLepere2-patch-2
 	public ReceiptFrame(final GuestAccount currentAccount, final ArrayList<Reservation> reservations) {
 		// ----Instance Variables
 		this.receiptFormat = new SimpleReceipt();
@@ -38,19 +36,12 @@ public class ReceiptFrame extends JFrame {
 		final int receiptFrameHeight = 400;
 
 		// -----Frame
-<<<<<<< HEAD
-		final JFrame receiptFrame = new JFrame(receiptFrameTitle);
-		receiptFrame.setSize(receiptFrameWidth, receiptFrameHeight);
-		receiptFrame.setLocationRelativeTo(null);
-		receiptFrame.setResizable(false);
-		receiptFrame.setAlwaysOnTop(true);
-=======
+
 		this.setTitle(receiptFrameTitle);
 		this.setSize(receiptFrameWidth, receiptFrameHeight);
 		this.setLocationRelativeTo(null);
 		this.setResizable(false);
 		this.setAlwaysOnTop(true);
->>>>>>> JLepere2-patch-2
 
 		// ----Receipt Text Area
 		final JTextArea receiptTextArea = new JTextArea(receiptFormat.getReceipt(currentAccount, reservations));
