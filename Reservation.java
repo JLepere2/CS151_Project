@@ -27,6 +27,9 @@ public class Reservation implements Serializable, Comparable<Reservation> {
 	}
 	
 	public int compareTo(Reservation otherReservation) {
+		if (checkInDate.compareTo(otherReservation.checkInDate) == 0) {
+			return checkOutDate.compareTo(otherReservation.checkOutDate);
+		}
 		return checkInDate.compareTo(otherReservation.checkInDate);
 	}
 	
@@ -76,6 +79,15 @@ public class Reservation implements Serializable, Comparable<Reservation> {
 	 */
 	public String getGuestName() {
 		return guest.getLastName() + ", " + guest.getFirstName(); 
+	}
+	
+	/**
+	 * Gets the total price of the reservation.
+	 * @return the total price of the reservation.
+	 */
+	public long getReservationPrice() {
+		long days = checkInDate.totalDays(checkOutDate);
+		return days * room.getPrice();
 	}
 	
 }

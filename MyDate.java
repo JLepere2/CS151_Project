@@ -85,7 +85,7 @@ public class MyDate implements Comparable<MyDate>, Serializable {
 	public long totalDays(MyDate otherDate) {
 		GregorianCalendar t1 = new GregorianCalendar(year, month, day);
 		GregorianCalendar t2 = new GregorianCalendar(otherDate.year, otherDate.month, otherDate.day);
-		return TimeUnit.DAYS.convert(Math.abs(t1.getTime().getTime() - t2.getTime().getTime()), TimeUnit.MILLISECONDS);
+		return 1 + TimeUnit.DAYS.convert(Math.abs(t1.getTime().getTime() - t2.getTime().getTime()), TimeUnit.MILLISECONDS);
 	}
 	
 }

@@ -124,4 +124,12 @@ public class ReservationCollection implements Serializable {
 		return false;
 	}
 	
+	/**
+	 * Removes the reservation.
+	 * @param r the resevation.
+	 */
+	public void removeReservation(Reservation r) {
+		reservations.remove(r);
+	}
+	
 }

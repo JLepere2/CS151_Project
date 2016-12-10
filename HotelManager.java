@@ -89,4 +89,12 @@ public class HotelManager implements Serializable {
 		return reservationCollection.getReservationsByDate(date);
 	}
 	
+	/**
+	 * Removes the reservation.
+	 * @param r the reservation.
+	 */
+	public void removeReservation(Reservation r) {
+		reservationCollection.removeReservation(r);
+	}
+	
 }

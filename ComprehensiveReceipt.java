@@ -19,8 +19,8 @@ public class ComprehensiveReceipt implements ReceiptFormat {
 		int total = 0;
 		for (Reservation r : theReservations) {
 			HotelRoom room = r.getHotelRoom();
-			receipt += room.getRoomType() + room.getRoomNumber() + " " + r.getTime() + ": $" + room.getPrice() + "\n";
-			total += room.getPrice();
+			receipt += room.getRoomType() + room.getRoomNumber() + " " + r.getTime() + ": $" + r.getReservationPrice() + "\n";
+			total += r.getReservationPrice();
 		}
 		receipt += "\nTotal cost: $" + total;
 		return receipt;

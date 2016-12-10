@@ -21,7 +21,7 @@ public class GuestHeaderPanel extends JPanel {
 	 * @param selectionPanel the guest selection view panel.
 	 * @param availabilityPanel the availability view panel.
 	 */
-	public GuestHeaderPanel(final MainCardPanel mainCardPanel, final HotelManager hotelManager, final GuestSelectionPanel selectionPanel, final GuestAvailabilityPanel availabilityPanel, final JPanel cardPanel) {
+	public GuestHeaderPanel(final MainCardPanel mainCardPanel, final HotelManager hotelManager, final GuestSelectionPanel selectionPanel, final GuestAvailabilityPanel availabilityPanel, final GuestViewReservationsPanel viewReservationsPanel, final JPanel cardPanel) {
 		
 		JButton backButton = new JButton("Sign Out");
 		backButton.addActionListener(new ActionListener() {
@@ -29,6 +29,7 @@ public class GuestHeaderPanel extends JPanel {
 				((CardLayout) mainCardPanel.getLayout()).show(mainCardPanel, GuestLogInPanel.getStateIdentifier());
 				selectionPanel.setVisible(false);
 				availabilityPanel.setVisible(false);
+				viewReservationsPanel.setVisible(false);
 				availabilityPanel.removeAllFromQueue();
 			}
 		});
@@ -43,6 +44,7 @@ public class GuestHeaderPanel extends JPanel {
 		JButton viewOrCancelReservationButton = new JButton("View/Cancel a Reservation");
 		viewOrCancelReservationButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				viewReservationsPanel.setCurrentAccount(mainCardPanel.getCurrentAccount());
 				((CardLayout) cardPanel.getLayout()).show(cardPanel, MainGuestViewPanel.viewReservationId);
 			}
 		});

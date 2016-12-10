@@ -15,10 +15,10 @@ public class SimpleReceipt implements ReceiptFormat {
 		Collections.sort(reservations);
 		for (Reservation r : reservations) {
 			HotelRoom room = r.getHotelRoom();
-			receipt += room.getRoomType() + room.getRoomNumber() + " " + r.getTime() + ": $" + room.getPrice() + "\n";
-			total += room.getPrice();
+			receipt += room.getRoomType() + room.getRoomNumber() + " " + r.getTime() + ": $" + r.getReservationPrice() + "\n";
+			total += r.getReservationPrice();
 		}
-		receipt += "\nTotal cost: " + total;
+		receipt += "\nTotal cost: $" + total;
 		return receipt;
 	}
 

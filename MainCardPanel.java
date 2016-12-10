@@ -1,4 +1,5 @@
 import java.awt.CardLayout;
+import java.awt.event.WindowEvent;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -47,7 +48,7 @@ public class MainCardPanel extends JPanel {
 	 * Quits the application.
 	 */
 	public void quitApplication() {
-		mainFrame.dispose();
+		mainFrame.dispatchEvent(new WindowEvent(mainFrame, WindowEvent.WINDOW_CLOSING));
 	}
 	
 	/**
