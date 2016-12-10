@@ -22,7 +22,7 @@ public class ComprehensiveReceipt implements ReceiptFormat {
 			receipt += room.getRoomType() + room.getRoomNumber() + " " + r.getTime() + ": $" + room.getPrice() + "\n";
 			total += room.getPrice();
 		}
-		receipt += "\nTotal cost: " + total;
+		receipt += "\nTotal cost: $" + total;
 		return receipt;
 	}
 	

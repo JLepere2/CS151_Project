@@ -1,10 +1,9 @@
-import java.awt.BorderLayout;
-import java.awt.CardLayout;
-import java.awt.FlowLayout;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
 
 /**
  * The UserSelection state panel. The first state of the application.
@@ -23,7 +22,8 @@ public class UserSelectionPanel extends JPanel {
 	 */
 	public UserSelectionPanel(final MainCardPanel mainCardPanel) {
 		this.setLayout(new BorderLayout());
-		JPanel headerPanel = new JPanel(new FlowLayout());
+		JPanel headerPanel = new JPanel(new GridLayout(1,2,50,50));
+		headerPanel.setBorder(new EmptyBorder(200,150,250,150));
 		
 		JButton managerButton = new JButton("Manager");
 		managerButton.addActionListener(new ActionListener() {
@@ -31,7 +31,7 @@ public class UserSelectionPanel extends JPanel {
 				((CardLayout) mainCardPanel.getLayout()).show(mainCardPanel, ManagerPanel.getStateIdentifier());
 			}
 		});
-		JButton guestButton = new JButton("GUEST");
+		JButton guestButton = new JButton("Guest");
 		guestButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				((CardLayout) mainCardPanel.getLayout()).show(mainCardPanel, GuestLogInPanel.getStateIdentifier());
@@ -40,7 +40,7 @@ public class UserSelectionPanel extends JPanel {
 		
 		headerPanel.add(managerButton);
 		headerPanel.add(guestButton);
-		this.add(headerPanel, BorderLayout.NORTH);
+		this.add(headerPanel, BorderLayout.CENTER);
 	}
 
 	/**

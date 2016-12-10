@@ -10,6 +10,7 @@ import javax.swing.JButton;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import javax.swing.border.EmptyBorder;
 
 /**
  * A log in panel for the guest.
@@ -42,6 +43,8 @@ public class GuestLogInPanel extends JPanel {
 
 		//-----SIGN UP CARD PANEL-----//
 		JPanel signUpCardPanel = new JPanel(new GridLayout(8, 1));
+		signUpCardPanel.setBorder(new EmptyBorder(100,100,0,100));
+
 		final JTextField firstNameTextField = new JTextField(firstNameText);
 		firstNameTextField.addMouseListener(new MouseAdapter() {
 			public void mousePressed(MouseEvent e) {
@@ -74,7 +77,8 @@ public class GuestLogInPanel extends JPanel {
 
 		//-----SIGN IN CARD PANEL------//
 		JPanel signInCardPanel = new JPanel(new GridLayout(8, 1));
-		final JTextField userIdTextField = new JTextField("Account Id");
+    signInCardPanel.setBorder(new EmptyBorder(100,100,0,100));
+    final JTextField userIdTextField = new JTextField("Account Id");
 		userIdTextField.addMouseListener(new MouseAdapter() {
 			public void mousePressed(MouseEvent e) {
 				userIdTextField.setText("");
