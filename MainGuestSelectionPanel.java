@@ -17,14 +17,14 @@ public class MainGuestSelectionPanel extends JPanel {
 
 	private static final long serialVersionUID = 11531L;
 
-	public MainGuestSelectionPanel(final DateRangeReservationModel dateRangeModel, final MainGuestAvailabilityPanel availabilityPanel) {
+	public MainGuestSelectionPanel(DateRangeReservationModel dateRangeModel, MainGuestAvailabilityPanel availabilityPanel) {
 
 		//-----INPUT DATE PANEL----///
 		JPanel textFieldPanel = new JPanel(new GridLayout(4, 2));
 		JLabel checkInLabel = new JLabel(" Check in");
 		JLabel checkOutLabel = new JLabel(" Check out");
-		final JTextField dateFrom = new JTextField(MyDate.getDateString(MyDate.getDate(new Date())));
-		final JTextField dateTo = new JTextField(MyDate.getDateString(MyDate.getDate(new Date())));
+		JTextField dateFrom = new JTextField(MyDate.getDateString(MyDate.getDate(new Date())));
+		JTextField dateTo = new JTextField(MyDate.getDateString(MyDate.getDate(new Date())));
 		dateFrom.setEditable(false);
 		dateFrom.addMouseListener(new MouseAdapter() {
 			public void mousePressed(MouseEvent e) {
@@ -59,19 +59,19 @@ public class MainGuestSelectionPanel extends JPanel {
 		//----ROOM CHOICE PANEL----
 		JPanel roomChoicePanel = new JPanel();
 		JLabel roomTypeLabel = new JLabel("Room type:");
-		JButton luxuriousRoomButton = new JButton("$" + LuxuriousRoom.getPrice());
+		JButton luxuriousRoomButton = new JButton("$" + LuxuriousRoom.PRICE);
 		luxuriousRoomButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				dateRangeModel.setRoomSelected(false);
+				dateRangeModel.setRoomSelected(false, true);
 				availabilityPanel.setVisible(true);
 				availabilityPanel.repaint();
 			}
 		});
 
-		JButton economicRoomButton = new JButton("$" + EconomicRoom.getPrice());
+		JButton economicRoomButton = new JButton("$" + EconomicRoom.PRICE);
 		economicRoomButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				dateRangeModel.setRoomSelected(true);
+				dateRangeModel.setRoomSelected(true, true);
 				availabilityPanel.setVisible(true);
 				availabilityPanel.repaint();
 			}

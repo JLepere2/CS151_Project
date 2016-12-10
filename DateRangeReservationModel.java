@@ -42,12 +42,14 @@ public class DateRangeReservationModel {
 		}
 	}
 	
-	public void setRoomSelected(boolean economicSelected) {
+	public void setRoomSelected(boolean economicSelected, boolean updateListeners) {
 		this.economicSelected = economicSelected;
 		
-		ChangeEvent e = new ChangeEvent(this);
-		for (ChangeListener l : listeners) {
-			l.stateChanged(e);
+		if (updateListeners) {
+			ChangeEvent e = new ChangeEvent(this);
+			for (ChangeListener l : listeners) {
+				l.stateChanged(e);
+			}
 		}
 	}
 	
@@ -91,5 +93,5 @@ public class DateRangeReservationModel {
 	public String getDateTo() {
 		return dateTo;
 	}
-
+	
 }

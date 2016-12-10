@@ -31,15 +31,10 @@ public class ReservationCollection implements Serializable {
 	
 	/**
 	 * Gets a list of available rooms for the provided date.
-	 * @param theInDate the date in.
-	 * @param theOutDate the date out
+	 * @param theDate the date.
 	 * @return a list of available rooms.
 	 */
 	public ArrayList<HotelRoom> getAvailableRooms(ArrayList<Reservation> resQueue, MyDate theInDate, MyDate theOutDate) {
-		
-		for(Reservation r : reservations) {
-			System.out.println(r.getTime()+r.getHotelRoom().getRoomNumber()+r.getHotelRoom().getRoomType());
-		}
 		
 		ArrayList<HotelRoom> conflictingHotelRooms = new ArrayList<>();
 		

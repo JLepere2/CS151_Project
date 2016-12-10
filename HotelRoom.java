@@ -5,21 +5,24 @@ import java.io.Serializable;
  * @author JLepere2
  * Version 1.1
  */
-public abstract class HotelRoom implements Serializable, Room {
-
-	private static final long serialVersionUID = 146431L;
-	protected int roomNumber;
+public interface HotelRoom extends Serializable {
 	
 	/**
-	 * Gets the price of the hotel room.
-	 * @return the price of the hotel room.
+	 * Gets the room number of the room.
+	 * @return the room number
 	 */
-	public static int getPrice() {
-		return 0;
-	}
+	public int getRoomNumber();
 	
-	public int getRoomNumber() {
-		return roomNumber;
-	}
+	/**
+	 * Gets the price of the room.
+	 * @return the price of the room
+	 */
+	public int getPrice();
+	
+	/**
+	 * Gets the room type of the room.
+	 * @return the room type of the room
+	 */
+	public String getRoomType();
 	
 }

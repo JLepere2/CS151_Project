@@ -1,24 +1,28 @@
-import java.io.Serializable;
 
 /**
  * An economic hotel room.
  * @author JLepere2
  * Version 1.1
  */
-public class EconomicRoom extends HotelRoom implements Serializable {
+public class EconomicRoom implements HotelRoom {
 	
-	private static int PRICE = 80;
+	public static final int PRICE = 80;
 	private static final long serialVersionUID = 1253632L;
 	public static String identifier = "ECON";
+	private int roomNumber;
 	
 	/**
 	 * Creates an Economic Room
 	 */
 	public EconomicRoom(int theRoomNumber) {
-		super.roomNumber = theRoomNumber;
+		this.roomNumber = theRoomNumber;
+	}
+	
+	public int getRoomNumber() {
+		return roomNumber;
 	}
 
-	public static int getPrice() {
+	public int getPrice() {
 		return PRICE;
 	}
 	

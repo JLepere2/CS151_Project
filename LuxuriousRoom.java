@@ -1,24 +1,29 @@
-import java.io.Serializable;
 
 /**
  * A luxurious hotel room.
  * @author JLepere2
  * Version 1.1
  */
-public class LuxuriousRoom extends HotelRoom implements Serializable {
+public class LuxuriousRoom implements HotelRoom {
 
 	private static final long serialVersionUID = 126326L;
-	private static int PRICE = 200;
-	public static String identifier = "LUX";
+	public static final int PRICE = 200;
+	public static final String identifier = "LUX";
+	private int roomNumber;
 	
 	/**
-	 * Creates a LuxuriousRoom.
+	 * Creates a LuxuriosRoom.
 	 */
 	public LuxuriousRoom(int theRoomNumber) {
-		super.roomNumber = theRoomNumber;
+		this.roomNumber = theRoomNumber;
+	}
+	
+	
+	public int getRoomNumber() {
+		return roomNumber;
 	}
 
-	public static int getPrice() {
+	public int getPrice() {
 		return PRICE;
 	}
 	
