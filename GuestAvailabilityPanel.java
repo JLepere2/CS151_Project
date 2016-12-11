@@ -191,7 +191,7 @@ public class GuestAvailabilityPanel extends JPanel {
 	/**
 	 * Sets the availability text are
 	 * @param dateRangeModel the date range model
-	 * @param availabilityTextArea the availability text are
+	 * @param availableTextLabel the availability text area
 	 */
 	private void setAvailabilityPanel(DateRangeReservationModel dateRangeModel, JLabel availableTextLabel, JPanel roomsAvailablePanel, final JTextField roomNumberTextField) {
 		
