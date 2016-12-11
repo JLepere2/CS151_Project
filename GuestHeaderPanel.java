@@ -1,9 +1,10 @@
-import java.awt.CardLayout;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
 
 /**
  * The header panel for the main guest view.
@@ -22,7 +23,11 @@ public class GuestHeaderPanel extends JPanel {
 	 * @param availabilityPanel the availability view panel.
 	 */
 	public GuestHeaderPanel(final MainCardPanel mainCardPanel, final HotelManager hotelManager, final GuestSelectionPanel selectionPanel, final GuestAvailabilityPanel availabilityPanel, final GuestViewReservationsPanel viewReservationsPanel, final JPanel cardPanel) {
-		
+
+	  this.setLayout(new GridLayout(1,3));
+		this.setPreferredSize(new Dimension(0, 50));
+		this.setBorder(new EmptyBorder(0,50,0,50));
+
 		JButton backButton = new JButton("Sign Out");
 		backButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {

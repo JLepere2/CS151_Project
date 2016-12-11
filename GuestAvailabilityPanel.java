@@ -43,7 +43,9 @@ public class GuestAvailabilityPanel extends JPanel {
 		this.availableRooms = new ArrayList<>();
 		this.reservationQueue = new ArrayList<>();
 		
-		this.setLayout(new BorderLayout());
+		this.setLayout(new GridLayout(1,1));
+    this.setBorder(new EmptyBorder(0,20,20,20));
+    JPanel layoutPretty = new JPanel(new BorderLayout());
 		
 		final int maxDays = 60;
 
@@ -172,8 +174,11 @@ public class GuestAvailabilityPanel extends JPanel {
 		comboPanel.add(new JScrollPane(reservationQueueTextArea), BorderLayout.CENTER);
 
 		//-----ADD TO PANEL----//
-		this.add(availabilityPanel, BorderLayout.CENTER);
-		this.add(comboPanel, BorderLayout.EAST);
+
+    layoutPretty.add(availabilityPanel, BorderLayout.CENTER);
+    layoutPretty.add(comboPanel, BorderLayout.EAST);
+
+    this.add(layoutPretty);
 
 		dateRangeModel.addChangeListener(new ChangeListener() {
 			public void stateChanged(ChangeEvent e) {

@@ -35,7 +35,7 @@ public class ManagerViewPanel extends JPanel {
 
 		// ------Instantiate Panel
 		this.setLayout(new GridLayout(2, 2, 20, 20));
-		this.setBorder(new EmptyBorder(20, 20, 100, 20));
+		this.setBorder(new EmptyBorder(20, 20, 50, 20));
 
 		// ------Date Range Model
 		final DateRangeReservationModel dateRangeModel = new DateRangeReservationModel(hotelManager);

@@ -4,6 +4,7 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
 
 /**
  * A panel for the manager state of the application
@@ -23,7 +24,10 @@ public class ManagerPanel extends JPanel {
 	public ManagerPanel(final MainCardPanel mainCardPanel, final HotelManager hotelManager) {
 
 		this.setLayout(new BorderLayout());
-		JPanel headerPanel = new JPanel(new FlowLayout());
+		JPanel headerPanel = new JPanel(new GridLayout(1,3));
+		headerPanel.setPreferredSize(new Dimension(0,50));
+		headerPanel.setBorder(new EmptyBorder(0,50,0,50));
+
 		final ManagerViewPanel managerView = new ManagerViewPanel(mainCardPanel, hotelManager);
 		managerView.setVisible(false);
 

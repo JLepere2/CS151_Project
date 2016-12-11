@@ -1,5 +1,4 @@
-import java.awt.BorderLayout;
-import java.awt.Component;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
@@ -18,6 +17,7 @@ import javax.swing.JTextArea;
 import javax.swing.ListSelectionModel;
 import javax.swing.SingleSelectionModel;
 import javax.swing.SwingConstants;
+import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 
@@ -50,6 +50,8 @@ public class GuestViewReservationsPanel extends JPanel {
 		
 		// Table
 		final JTable reservationTable = new JTable();
+		JPanel reservationTablePretty = new JPanel(new GridLayout(1,1));
+		reservationTablePretty.setBorder(new EmptyBorder(20,20,10,20));
 		reservationTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		final String[] columnTitles = {"Reservations"};
 		
@@ -117,11 +119,20 @@ public class GuestViewReservationsPanel extends JPanel {
 			
 			// South Panel
 			JPanel southPanel = new JPanel(new BorderLayout());
-			southPanel.add(reservationInfoTextArea, BorderLayout.CENTER);
-			southPanel.add(cancelButton, BorderLayout.EAST);
+			JPanel reservationInfoTextAreaPretty = new JPanel(new GridLayout(1,1));
+			JPanel cancelButtonPretty = new JPanel(new GridLayout(1,1));
+			reservationInfoTextAreaPretty.setBorder(new EmptyBorder(0,20,20,20));
+			cancelButtonPretty.setBorder(new EmptyBorder(0,0,20,20));
+
+			reservationInfoTextAreaPretty.add(reservationInfoTextArea);
+			cancelButtonPretty.add(cancelButton);
+
+			southPanel.add(reservationInfoTextAreaPretty, BorderLayout.CENTER);
+			southPanel.add(cancelButtonPretty, BorderLayout.EAST);
 			
 			// Add Components
-			this.add(new JScrollPane(reservationTable), BorderLayout.CENTER);
+			reservationTablePretty.add(new JScrollPane(reservationTable));
+			this.add(reservationTablePretty, BorderLayout.CENTER);
 			this.add(southPanel, BorderLayout.SOUTH);
 			
 		} else {
