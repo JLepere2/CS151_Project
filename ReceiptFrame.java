@@ -12,24 +12,27 @@ import javax.swing.JScrollPane;
 
 /**
  * A frame for displaying the receipts.
- * @author JLepere2 
+ * 
+ * @author Ziwei Wu 
  * Version 1.1
  */
 public class ReceiptFrame extends JFrame {
 
 	private static final long serialVersionUID = 113625L;
 	private ReceiptFormat receiptFormat;
-	
 
 	/**
 	 * Creates a ReceiptFrame.
-	 * @param currentAccount the current account.
-	 * @param reservations the reservations that were JUST processed.
+	 * 
+	 * @param currentAccount
+	 *            the current account.
+	 * @param reservations
+	 *            the reservations that were JUST processed.
 	 */
 	public ReceiptFrame(final GuestAccount currentAccount, final ArrayList<Reservation> reservations) {
 		// ----Instance Variables
 		this.receiptFormat = new SimpleReceipt();
-		
+
 		// -----Frame Variables
 		final String receiptFrameTitle = "RECEIPT";
 		final int receiptFrameWidth = 350;

@@ -16,11 +16,13 @@ public class GuestHeaderPanel extends JPanel {
 	private static final long serialVersionUID = 1531L;
 
 	/**
-	 * Creates a header panel for the guest view.
+	 * Creates a GuestHeaderPanel.
 	 * @param mainCardPanel the main card panel.
 	 * @param hotelManager the hotel manager.
-	 * @param selectionPanel the guest selection view panel.
-	 * @param availabilityPanel the availability view panel.
+	 * @param selectionPanel the selection panel.
+	 * @param availabilityPanel the availability panel.
+	 * @param viewReservationsPanel the view reservation panel.
+	 * @param cardPanel the card panel to switch between view and create reservation.
 	 */
 	public GuestHeaderPanel(final MainCardPanel mainCardPanel, final HotelManager hotelManager, final GuestSelectionPanel selectionPanel, final GuestAvailabilityPanel availabilityPanel, final GuestViewReservationsPanel viewReservationsPanel, final JPanel cardPanel) {
 

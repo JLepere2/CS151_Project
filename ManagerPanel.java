@@ -8,7 +8,8 @@ import javax.swing.border.EmptyBorder;
 
 /**
  * A panel for the manager state of the application
- * @author Rodion Yaryy
+ * 
+ * @author Rodion Yaryy 
  * Version 1.1
  */
 public class ManagerPanel extends JPanel {
@@ -18,15 +19,18 @@ public class ManagerPanel extends JPanel {
 
 	/**
 	 * Creates a ManagerPanel.
-	 * @param mainCardPanel the main card panel.
-	 * @param hotelManager the hotel manager.
+	 * 
+	 * @param mainCardPanel
+	 *            the main card panel.
+	 * @param hotelManager
+	 *            the hotel manager.
 	 */
 	public ManagerPanel(final MainCardPanel mainCardPanel, final HotelManager hotelManager) {
 
 		this.setLayout(new BorderLayout());
-		JPanel headerPanel = new JPanel(new GridLayout(1,3));
-		headerPanel.setPreferredSize(new Dimension(0,50));
-		headerPanel.setBorder(new EmptyBorder(0,50,0,50));
+		JPanel headerPanel = new JPanel(new GridLayout(1, 3));
+		headerPanel.setPreferredSize(new Dimension(0, 50));
+		headerPanel.setBorder(new EmptyBorder(0, 50, 0, 50));
 
 		final ManagerViewPanel managerView = new ManagerViewPanel(mainCardPanel, hotelManager);
 		managerView.setVisible(false);
@@ -39,7 +43,7 @@ public class ManagerPanel extends JPanel {
 				((CardLayout) mainCardPanel.getLayout()).show(mainCardPanel, UserSelectionPanel.getStateIdentifier());
 			}
 		});
-		
+
 		JButton loadViewButton = new JButton("Load/View Reservations");
 		loadViewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -47,14 +51,14 @@ public class ManagerPanel extends JPanel {
 				managerView.revalidate();
 			}
 		});
-		
+
 		JButton saveButton = new JButton("Save");
 		saveButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				mainCardPanel.saveData(hotelManager);
 			}
 		});
-		
+
 		JButton quitButton = new JButton("Quit");
 		quitButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -73,6 +77,7 @@ public class ManagerPanel extends JPanel {
 
 	/**
 	 * Gets the state identifier for this panel.
+	 * 
 	 * @return the state identifier for this panel.
 	 */
 	public static String getStateIdentifier() {

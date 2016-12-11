@@ -5,7 +5,6 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Enumeration;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -15,7 +14,6 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextArea;
 import javax.swing.ListSelectionModel;
-import javax.swing.SingleSelectionModel;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
@@ -28,7 +26,7 @@ import javax.swing.table.TableModel;
  */
 public class GuestViewReservationsPanel extends JPanel {
 
-	private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 12363L;
 	private GuestAccount currentAccount;
 	private Reservation selectedReservation;
 	private HotelManager hotelManager;

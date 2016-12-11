@@ -5,7 +5,8 @@ import javax.swing.JPanel;
 
 /**
  * The main guest view panel for the application.
- * @author JLepere2
+ * 
+ * @author Jake Lepere 
  * Version 1.1
  */
 public class MainGuestViewPanel extends JPanel {
@@ -17,8 +18,11 @@ public class MainGuestViewPanel extends JPanel {
 
 	/**
 	 * Creates a MainGuestViewPanel.
-	 * @param mainCardPanel the main card panel.
-	 * @param hotelManager the hotel manager.
+	 * 
+	 * @param mainCardPanel
+	 *            the main card panel.
+	 * @param hotelManager
+	 *            the hotel manager.
 	 */
 	public MainGuestViewPanel(final MainCardPanel mainCardPanel, final HotelManager hotelManager) {
 
@@ -35,7 +39,7 @@ public class MainGuestViewPanel extends JPanel {
 		availabilityPanel.setVisible(false);
 		centerMakeReservationPanel.add(selectionPanel, BorderLayout.NORTH);
 		centerMakeReservationPanel.add(availabilityPanel, BorderLayout.CENTER);
-		
+
 		// --- CENTER VIEW RES PANEL --- //
 		GuestViewReservationsPanel viewResPanel = new GuestViewReservationsPanel(hotelManager);
 
@@ -55,6 +59,7 @@ public class MainGuestViewPanel extends JPanel {
 
 	/**
 	 * Gets the state identifier for this state.
+	 * 
 	 * @return the state identifier.
 	 */
 	public static String getStateIdentifier() {

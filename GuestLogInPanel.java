@@ -11,7 +11,8 @@ import javax.swing.border.EmptyBorder;
 
 /**
  * A log in panel for the guest.
- * @author JLepere2
+ * 
+ * @author Jake Lepere 
  * Version 1.1
  */
 public class GuestLogInPanel extends JPanel {
@@ -23,24 +24,26 @@ public class GuestLogInPanel extends JPanel {
 	private static String firstNameText = "First Name";
 	private static String lastNameText = "Last Name";
 	private static String accountIdText = "Account Id";
-	
 
 	/**
 	 * Creates a GuestLogInPanel.
-	 * @param mainCardPanel the main card panel.
-	 * @param hotelManager the hotel manager.
+	 * 
+	 * @param mainCardPanel
+	 *            the main card panel.
+	 * @param hotelManager
+	 *            the hotel manager.
 	 */
 	public GuestLogInPanel(final MainCardPanel mainCardPanel, final HotelManager hotelManager) {
-		
+
 		this.setLayout(new BorderLayout());
-		
-		//-------FRAME CENTER PANEL------//
+
+		// -------FRAME CENTER PANEL------//
 		final JPanel frameCenterPanel = new JPanel(new CardLayout());
 		frameCenterPanel.setVisible(false);
 
-		//-----SIGN UP CARD PANEL-----//
+		// -----SIGN UP CARD PANEL-----//
 		JPanel signUpCardPanel = new JPanel(new GridLayout(8, 1));
-		signUpCardPanel.setBorder(new EmptyBorder(100,100,0,100));
+		signUpCardPanel.setBorder(new EmptyBorder(100, 100, 0, 100));
 
 		final JTextField firstNameTextField = new JTextField(firstNameText);
 		firstNameTextField.addMouseListener(new MouseAdapter() {
@@ -72,10 +75,10 @@ public class GuestLogInPanel extends JPanel {
 		signUpCardPanel.add(lastNameTextField);
 		signUpCardPanel.add(userSignUpButton);
 
-		//-----SIGN IN CARD PANEL------//
+		// -----SIGN IN CARD PANEL------//
 		JPanel signInCardPanel = new JPanel(new GridLayout(8, 1));
-    signInCardPanel.setBorder(new EmptyBorder(100,100,0,100));
-    final JTextField userIdTextField = new JTextField("Account Id");
+		signInCardPanel.setBorder(new EmptyBorder(100, 100, 0, 100));
+		final JTextField userIdTextField = new JTextField("Account Id");
 		userIdTextField.addMouseListener(new MouseAdapter() {
 			public void mousePressed(MouseEvent e) {
 				userIdTextField.setText("");
@@ -88,8 +91,11 @@ public class GuestLogInPanel extends JPanel {
 					int idNumber = Integer.parseInt(userIdTextField.getText());
 					GuestAccount account = hotelManager.validIdForLogIn(idNumber);
 					if (account != null) {
+						JOptionPane.showMessageDialog(null,
+								"Welcome back, " + account.getFirstName() + " " + account.getLastName() + "!");
 						mainCardPanel.setCurrentAccount(account);
-						((CardLayout) mainCardPanel.getLayout()).show(mainCardPanel, MainGuestViewPanel.getStateIdentifier());
+						((CardLayout) mainCardPanel.getLayout()).show(mainCardPanel,
+								MainGuestViewPanel.getStateIdentifier());
 						userIdTextField.setText(accountIdText);
 					} else {
 						JOptionPane.showMessageDialog(null, "Invalid ID");
@@ -105,11 +111,11 @@ public class GuestLogInPanel extends JPanel {
 
 		frameCenterPanel.add(signUpCardPanel, signUpId);
 		frameCenterPanel.add(signInCardPanel, signInId);
-		
-		//-------HEADER PANEL---------//
-		JPanel headerPanel = new JPanel(new GridLayout(1,3));
-    headerPanel.setPreferredSize(new Dimension(0, 50));
-    headerPanel.setBorder(new EmptyBorder(0,50,0,50));
+
+		// -------HEADER PANEL---------//
+		JPanel headerPanel = new JPanel(new GridLayout(1, 3));
+		headerPanel.setPreferredSize(new Dimension(0, 50));
+		headerPanel.setBorder(new EmptyBorder(0, 50, 0, 50));
 		JButton backButton = new JButton("Back");
 		backButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -136,19 +142,20 @@ public class GuestLogInPanel extends JPanel {
 		});
 		headerPanel.add(backButton);
 		headerPanel.add(signUpButton);
-		headerPanel.add(signInButton);		
-		
+		headerPanel.add(signInButton);
+
 		this.add(frameCenterPanel, BorderLayout.CENTER);
 		this.add(headerPanel, BorderLayout.NORTH);
 
 	}
-	
+
 	/**
 	 * Gets the state identifier for this state panel.
+	 * 
 	 * @return the state identifier.
 	 */
 	public static String getStateIdentifier() {
 		return identifier;
 	}
-	
+
 }

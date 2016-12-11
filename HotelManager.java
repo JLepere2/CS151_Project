@@ -30,6 +30,7 @@ public class HotelManager implements Serializable {
 	 * Adds a new guest account to the hotel.
 	 * @param theFirstName the first name of the guest
 	 * @param theLastName the last name of the guest
+	 * @return the guest account.
 	 */
 	public GuestAccount addGuestAccount(String theFirstName, String theLastName) {
 		GuestAccount account = new GuestAccount(theFirstName, theLastName); 
@@ -66,7 +67,7 @@ public class HotelManager implements Serializable {
 	 * @param resQueue a list of rooms that are in the guests queue.
 	 * @param theInDate the in date.
 	 * @param theOutDate the out date.
-	 * @return
+	 * @return a list of hotel rooms.
 	 */
 	public ArrayList<HotelRoom> getAvailableRooms(ArrayList<Reservation> resQueue, MyDate theInDate, MyDate theOutDate) {
 		return reservationCollection.getAvailableRooms(resQueue, theInDate, theOutDate);
